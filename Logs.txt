@@ -1,0 +1,409 @@
+[2025-11-26T16:09:06.577450800] Atenção em: Entrada de usuário: admin
+[2025-11-26T16:11:56.418810200] Atenção em: Entrada de usuário: admin
+[2025-11-26T16:16:48.684119] Atenção em: Entrada de usuário: admin
+[2025-11-26T16:17:27.297210900] Atenção em: Entrada de usuário: admin
+[2025-11-26T16:32:45.132940200] Atenção em: Entrada de usuário: admin
+[2025-11-26T16:32:53.599028200] Atenção em: [UPDATE] - Linha atualizada
+[2025-11-26T16:32:53.603021500] Atenção em: [UPDATE] - Linha não atualizada
+[2025-11-26T16:32:57.076781100] Atenção em: [UPDATE] - Linha atualizada
+[2025-11-26T16:32:57.080423500] Atenção em: [UPDATE] - Linha não atualizada
+[2025-11-26T16:32:58.146835400] Atenção em: [UPDATE] - Linha atualizada
+[2025-11-26T16:32:58.174760900] Atenção em: [UPDATE] - Linha não atualizada
+[2025-11-26T16:33:07.653632200] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T16:33:07.657482500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T16:33:08.288384900] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T16:33:08.291385500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T16:33:08.971268100] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T16:33:08.976036800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T16:33:14.150677800] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T16:33:14.151825100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T16:33:14.586829900] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T16:33:14.589637600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T16:33:14.945651400] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T16:33:14.948182400] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T16:33:15.306956800] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T16:33:15.309722700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T16:33:15.665878100] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T16:33:15.668380800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T16:40:52.464698300] Atenção em: Entrada de usuário: admin
+[2025-11-26T16:41:17.127030400] Atenção em: Entrada de usuário: admin
+[2025-11-26T16:46:44.126182200] Atenção em: Entrada de usuário: admin
+[2025-11-26T16:47:12.698976600] Atenção em: Frame Reiniciado
+[2025-11-26T16:47:13.486857900] Atenção em: Coluna - AUTO RESIZE OFF
+[2025-11-26T17:05:01.933306200] Atenção em: Entrada de usuário: admin
+[2025-11-26T17:31:45.543104400] Atenção em: Entrada de usuário: admin
+[2025-11-26T17:32:28.506026500] Atenção em: Entrada de usuário: admin
+[2025-11-26T17:33:31.778518300] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T17:33:31.780806400] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T17:33:50.206972100] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T17:33:50.208684400] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T17:33:52.785337900] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T17:33:52.786780500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T17:33:56.061999] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T17:33:56.063992500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T17:37:09.926168] Atenção em: Entrada de usuário: admin
+[2025-11-26T17:39:14.148747] Atenção em: Entrada de usuário: admin
+[2025-11-26T17:40:16.836254500] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T17:40:16.839239] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T17:41:01.811215800] Atenção em: Entrada de usuário: admin
+[2025-11-26T17:43:08.267101900] Atenção em: Entrada de usuário: admin
+[2025-11-26T17:43:31.814212800] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T17:43:31.817195600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T17:43:34.103738100] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T17:43:34.106825500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-26T17:43:36.501108200] Atenção em: [INSERT] - Linha inserida
+[2025-11-26T17:43:36.503029600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T14:41:08.288922300] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:03:09.729748400] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:03:09.730744900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:03:11.208293100] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:03:11.209290600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:03:12.523197300] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:03:12.524193900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:03:13.919242900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:03:13.921237600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:04:16.733093800] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:04:16.734090700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:08:45.641592500] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:09:06.086507100] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:09:06.088502300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:09:08.056266600] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:09:08.058583200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:09:09.492499300] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:09:09.494496300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:09:11.195451400] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:09:11.197444400] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:09:15.951514400] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:09:15.952514200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:11:33.319049900] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:16:25.220606600] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:17:42.050291900] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:19:23.451465700] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:27:55.475283700] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:29:46.296059] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:33:36.608291800] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:34:09.083967800] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:34:09.084963700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:34:10.496411900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:34:10.497409300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:34:12.633692900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:34:12.634689900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:34:17.782618400] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:34:17.784856400] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:35:13.452577200] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:36:14.966751600] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:36:57.872052300] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:37:58.957852] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:38:11.924656400] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:38:11.926649200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:38:13.933885100] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:38:13.935879] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:38:15.767195700] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:38:15.768189900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:38:17.721818300] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:38:17.722814700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:38:37.946782800] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:38:37.947783300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:40:24.186399] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:40:43.755695900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:40:43.756688500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:43:10.298257300] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:43:20.376359700] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:43:20.377353100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:43:29.910834600] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:43:29.911831] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:43:32.678431900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:43:32.679423200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:46:25.691965800] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:50:23.638338900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:50:23.640332800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:50:26.288447800] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:50:26.290441300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:50:28.640687600] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:50:28.642094] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:52:12.950865700] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:53:53.177435] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:54:35.300116400] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:54:35.302113200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:55:15.789324600] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:55:30.356344400] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:55:30.357346100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:55:44.424947100] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:55:44.426940800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:57:34.996879900] Atenção em: Entrada de usuário: admin
+[2025-11-27T15:58:08.477008700] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:58:08.479000100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:58:09.867689] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:58:09.869683300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T15:58:10.951565800] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T15:58:10.952566300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:01:25.032603900] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:01:36.057145800] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:01:36.058140200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:01:37.562123200] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:01:37.563120200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:01:40.433451900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:01:40.435444] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:02:28.708832700] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:03:14.037597300] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:03:14.038594800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:04:59.928599500] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:05:10.530612] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:05:10.531610200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:05:11.927471200] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:05:11.929470100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:05:12.936167700] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:05:12.938453800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:05:13.947823] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:05:13.949817600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:06:25.907906700] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:06:59.631452400] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:06:59.632449100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:07:01.116179600] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:07:01.117214600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:07:03.737406500] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:07:03.738402200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:07:56.983364300] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:08:54.497678900] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:09:43.436560400] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:09:43.437557400] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:09:46.572716500] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:09:46.573713500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:09:47.932141] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:09:47.933695600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:09:49.278457700] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:09:49.279457200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:09:50.164554800] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:09:50.166549] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:11:46.574933300] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:13:01.714816400] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:14:19.864257400] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:14:31.440567800] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:14:31.442560800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:14:44.277697900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:14:44.279692500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:14:46.471476900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:14:46.472474100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:16:03.866087200] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:16:12.228353100] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:16:12.230347800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:19:57.495345900] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:26:00.945224800] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:30:04.353472400] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:31:29.365477300] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:31:56.790141900] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:32:28.129058500] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:32:28.130055200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:32:30.473667100] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:32:30.474661700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:32:34.927352700] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:32:34.929349900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:32:39.440841600] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:32:39.441839200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:33:29.814893800] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:33:29.816888] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:33:43.718350600] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:33:43.719344700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:33:44.899134700] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:33:44.900130500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:33:45.702085] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:33:45.703082300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:33:46.206692100] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:33:46.208683700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:33:46.583179300] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:33:46.584174300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:33:46.954368500] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:33:46.955364600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:35:37.045361700] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:35:51.694525600] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:35:51.696521100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:35:54.726422900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:35:54.727421200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:35:56.218437100] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:35:56.220430400] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:35:57.590769700] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:35:57.591767100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:37:26.747643600] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:38:05.416323] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:38:05.417318800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:38:08.980797700] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:38:08.981794300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:38:10.333183400] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:38:10.335178100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:38:12.103452600] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:38:12.104450500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:38:28.846464500] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:38:28.847461700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:40:30.442426100] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:41:53.115540900] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:44:08.182163700] Atenção em: Entrada de usuário: admin
+[2025-11-27T16:47:14.629941300] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:47:14.631668600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:47:15.742409100] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:47:15.744132200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:47:16.668271600] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:47:16.670148800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:47:18.115641800] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:47:18.116640] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:47:19.349843700] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T16:47:19.350846100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T16:50:43.065915600] Atenção em: Entrada de usuário: admin
+[2025-11-27T17:01:11.163940100] Atenção em: Entrada de usuário: admin
+[2025-11-27T17:03:10.335693900] Atenção em: Entrada de usuário: admin
+[2025-11-27T17:14:12.890705300] Atenção em: Entrada de usuário: admin
+[2025-11-27T17:15:50.284593900] Atenção em: Entrada de usuário: admin
+[2025-11-27T17:17:32.548943] Atenção em: Entrada de usuário: admin
+[2025-11-27T17:19:39.971450100] Atenção em: Entrada de usuário: admin
+[2025-11-27T17:22:27.051444500] Atenção em: Entrada de usuário: admin
+[2025-11-27T17:24:24.298922200] Atenção em: Entrada de usuário: admin
+[2025-11-27T17:32:08.789649100] Atenção em: Entrada de usuário: admin
+[2025-11-27T17:34:15.099905600] Atenção em: Entrada de usuário: admin
+[2025-11-27T17:37:09.267209800] Atenção em: Entrada de usuário: admin
+[2025-11-27T19:03:30.385082600] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:03:30.387078600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:03:33.362293] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:03:33.364786] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:03:35.667575200] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:03:35.668570200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:03:55.176311900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:03:55.178371600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:03:57.136953200] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:03:57.138945900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:03:58.112347400] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:03:58.115347300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:03:58.857192900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:03:58.859184800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:03:59.768714500] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:03:59.770705800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:04:00.497124] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:04:00.499117600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:04:01.388742] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:04:01.390736200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:04:01.893391700] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:04:01.895386300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:04:02.379095900] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:04:02.381089600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:04:02.728196200] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:04:02.729160400] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:04:03.085952300] Atenção em: [INSERT] - Linha inserida
+[2025-11-27T19:04:03.087791600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-27T19:25:12.772915] Atenção em: Entrada de usuário: admin
+[2025-11-27T19:25:30.807556800] Atenção em: Entrada de usuário: teste1
+[2025-11-27T19:40:27.819180200] Atenção em: Entrada de usuário: admin
+[2025-11-27T19:40:49.896842600] Atenção em: Entrada de usuário: teste1
+[2025-11-27T20:27:29.402724700] Atenção em: Entrada de usuário: admin
+[2025-11-27T20:27:57.241120900] Atenção em: Entrada de usuário: admin
+[2025-11-27T20:28:08.198562200] Atenção em: Entrada de usuário: teste1
+[2025-11-27T20:31:02.859517600] Atenção em: Entrada de usuário: admin
+[2025-11-27T20:31:27.032528100] Atenção em: Entrada de usuário: teste1
+[2025-11-27T20:33:46.681324] Atenção em: Entrada de usuário: admin
+[2025-11-27T20:41:13.080934600] Atenção em: Entrada de usuário: admin
+[2025-11-27T20:41:30.883250] Atenção em: Entrada de usuário: teste1
+[2025-11-27T20:43:01.913299] Atenção em: Entrada de usuário: teste1
+[2025-11-27T20:44:24.332127400] Atenção em: Entrada de usuário: admin
+[2025-11-27T20:47:18.963200600] Atenção em: Entrada de usuário: admin
+[2025-11-27T20:47:33.637656800] Atenção em: Entrada de usuário: teste1
+[2025-11-27T20:48:26.032686700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:26.032686700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:28.750728200] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:28.750728200] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:29.038957700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:29.038957700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:31.752379300] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:31.752379300] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:32.032839] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:32.032839] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:34.752698800] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:34.752698800] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:35.033921] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:35.033921] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:37.752662] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:37.752662] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:38.035221600] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:38.035221600] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:40.753384600] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:40.753384600] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:41.034489900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:41.034489900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:43.753483600] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:43.753483600] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:44.035773900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:44.035773900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:46.753729700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:46.753729700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:47.036496100] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:47.036496100] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:49.753556900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:49.753556900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:50.038031900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:50.038031900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:52.754831300] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:52.754831300] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:53.037896500] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:53.037896500] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:55.755800700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:55.755800700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:56.037073600] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:56.037073600] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:58.757122400] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:58.757122400] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:59.039041600] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:48:59.039041600] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:01.757417600] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:01.757417600] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:02.038827700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:02.038827700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:04.757854700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:04.757854700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:05.040058900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:05.040058900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:07.758197900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:07.758197900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:08.045866300] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:08.045866300] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:10.758680100] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:10.758680100] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:11.039926200] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:11.039926200] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:13.758980800] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:13.758980800] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:14.045045500] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:14.045045500] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:16.759296300] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:16.759296300] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:17.042347200] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:17.042347200] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:19.760244700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:19.760244700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:20.042846500] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:20.042846500] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:22.760108500] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:22.760108500] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:23.044775400] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:23.044775400] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:25.760389400] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:25.760389400] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:26.043162300] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:26.043162300] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:28.759504100] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:28.759504100] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:29.043497400] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:29.043497400] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:31.760832] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:31.760832] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:32.043512900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:32.043512900] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:34.763555700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:34.763555700] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:35.044589800] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:35.044589800] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:38.044985500] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:49:38.044985500] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-27T20:51:58.061998900] Atenção em: Entrada de usuário: admin
+[2025-11-27T20:52:14.781158500] Atenção em: Entrada de usuário: teste1
+[2025-11-27T20:54:43.052508] Atenção em: Entrada de usuário: admin
+[2025-11-27T20:54:57.701932400] Atenção em: Entrada de usuário: teste1
+[2025-11-27T21:32:08.014677300] Atenção em: Entrada de usuário: admin
+[2025-11-27T21:32:23.614419] Atenção em: Entrada de usuário: teste1
+[2025-11-27T21:40:36.653174200] Atenção em: Entrada de usuário: admin
+[2025-11-27T21:41:15.940059600] Atenção em: Entrada de usuário: teste1

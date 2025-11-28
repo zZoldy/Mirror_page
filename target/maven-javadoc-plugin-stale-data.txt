@@ -1,0 +1,65 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+--no-fonts
+-classpath
+'C:/Users/Z D K/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar;C:/Users/Z D K/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar;C:/Users/Z D K/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar;C:/Users/Z D K/.m2/repository/org/java-websocket/Java-WebSocket/1.5.7/Java-WebSocket-1.5.7.jar;C:/Users/Z D K/.m2/repository/org/slf4j/slf4j-api/2.0.6/slf4j-api-2.0.6.jar'
+-encoding
+'UTF-8'
+-protected
+--release
+24
+-sourcepath
+'C:/Users/Z D K/OneDrive/Documentos/NetBeansProjects/MirrorPage/src/main/java;C:/Users/Z D K/OneDrive/Documentos/NetBeansProjects/MirrorPage/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Z D K/OneDrive/Documentos/NetBeansProjects/MirrorPage/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'MirrorPage 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'MirrorPage 1.0-SNAPSHOT API'
+com.app.mirrorpage.app.dto.auth
+com.app.mirrorpage.app.framework
+com.app.mirrorpage.app.listener
+com.app.mirrorpage.app
+com.app.mirrorpage.app.model.file
+com.app.mirrorpage.app.model
+com.app.mirrorpage.app.table
+com.app.mirrorpage.app.tema
+com.app.mirrorpage.client.dto
+com.app.mirrorpage.client.net
+com.app.mirrorpage.client.tree
+com.app.mirrorpage.client.ui.tree
+com.app.mirrorpage.ui.config
+com.app.mirrorpage.ui
+C:\Users\Z D K\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.2\jackson-databind-2.17.2.jar = 1758461751119
+C:\Users\Z D K\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.2\jackson-annotations-2.17.2.jar = 1758461750627
+C:\Users\Z D K\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.2\jackson-core-2.17.2.jar = 1758461751046
+C:\Users\Z D K\.m2\repository\org\java-websocket\Java-WebSocket\1.5.7\Java-WebSocket-1.5.7.jar = 1763739063132
+C:\Users\Z D K\.m2\repository\org\slf4j\slf4j-api\2.0.6\slf4j-api-2.0.6.jar = 1763739063312
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\src\main\java = 1763245467777
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\generated-sources\annotations = 1764286182040
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\allclasses-index.html = 1764286220030
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\allpackages-index.html = 1764286220036
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\element-list = 1764286217538
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\help-doc.html = 1764286220352
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\index-all.html = 1764286220331
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\index.html = 1764286219886
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\member-search-index.js = 1764286220047
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\module-search-index.js = 1764286220039
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\overview-summary.html = 1764286220341
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\overview-tree.html = 1764286219879
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\package-search-index.js = 1764286220041
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\search.html = 1764286220337
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\serialized-form.html = 1764286218496
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\tag-search-index.js = 1764286220050
+C:\Users\Z D K\OneDrive\Documentos\NetBeansProjects\MirrorPage\target\reports\apidocs\type-search-index.js = 1764286220044
