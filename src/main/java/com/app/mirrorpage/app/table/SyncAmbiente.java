@@ -37,15 +37,19 @@ public class SyncAmbiente {
     }
 
     /*──────── 2) Inserção de linha ────────*/
-    public void onInsertRow(int afterRow) {
+    public void onInsertRow(int afterRow, int col) {
         try {
             // 1. envia comando de inserção
-            api.insertRow(sheetPath, afterRow);
+            api.insertRow(sheetPath, afterRow, tabela.usuarioLogado);
 
             // 2. recarrega CSV completo ou diff
             String csv = api.loadSheet(sheetPath);
             SwingUtilities.invokeLater(() -> {
                 aplicarCsvNoModelo(csv);
+
+                int viewRow = tabela.tabela_news.convertRowIndexToView(afterRow);
+                int viewCol = tabela.tabela_news.convertColumnIndexToView(col);
+                tabela.selecao_line(viewRow, viewCol);
             });
 
         } catch (Exception ex) {
@@ -76,28 +80,96 @@ public class SyncAmbiente {
         tabela.tabela_tempo();
     }
 
-    public void onTrocarLine(int fromModelRow, int toModelRow, String user) {
+    public void onTrocarLine(int fromModelRow, int toModelRow, int col, String user) {
         try {
             api.moveRow(sheetPath, fromModelRow, toModelRow, user);
 
             String csv = api.loadSheet(sheetPath);
 
-            SwingUtilities.invokeLater(() -> aplicarCsvNoModelo(csv));
+            SwingUtilities.invokeLater(() -> {
+                aplicarCsvNoModelo(csv);
+
+                int viewRow = tabela.tabela_news.convertRowIndexToView(toModelRow);
+                int viewCol = tabela.tabela_news.convertColumnIndexToView(col);
+                tabela.selecao_line(viewRow, viewCol);
+            });
+
+        } catch (ApiClient.ApiHttpException e) {
+            // [CORREÇÃO] Captura o 409 (Lock) especificamente
+            if (e.getStatusCode() == 409) {
+                // Mensagem vinda do servidor: "Movimento bloqueado: A linha X está em uso..."
+                String msgErro = e.getMessage();
+
+                SwingUtilities.invokeLater(() -> {
+                    JOptionPane.showMessageDialog(tabela,
+                            msgErro,
+                            "Ação Bloqueada",
+                            JOptionPane.WARNING_MESSAGE);
+                });
+            } else {
+                e.printStackTrace();
+            }
+
+            // [IMPORTANTE] Como o movimento falhou, precisamos desfazer a alteração visual local.
+            // Recarregamos o arquivo original do servidor.
+            recarregarParaDesfazerErro();
 
         } catch (Exception ex) {
             ex.printStackTrace();
+            // Erro genérico também força recarga para garantir integridade
+            recarregarParaDesfazerErro();
         }
     }
 
-    public void onDeleteLine(int row) {
+    // Método auxiliar para evitar duplicação de código no catch
+    private void recarregarParaDesfazerErro() {
         try {
-            api.deleteRow(sheetPath, row);
+            String csvOriginal = api.loadSheet(sheetPath);
+            SwingUtilities.invokeLater(() -> aplicarCsvNoModelo(csvOriginal));
+        } catch (Exception loadEx) {
+            System.err.println("Erro ao tentar restaurar tabela após falha: " + loadEx.getMessage());
+        }
+    }
+
+    public void onDeleteLine(int row, int col) {
+        try {
+            api.deleteRow(sheetPath, row, tabela.usuarioLogado);
             String csv = api.loadSheet(sheetPath);
 
-            SwingUtilities.invokeLater(() -> aplicarCsvNoModelo(csv));
+            SwingUtilities.invokeLater(() -> {
+                aplicarCsvNoModelo(csv);
+                int viewRow = tabela.tabela_news.convertRowIndexToView(row);
+                int viewCol = tabela.tabela_news.convertColumnIndexToView(col);
+                tabela.selecao_line(viewRow, viewCol);
+            });
 
         } catch (Exception e) {
-            e.printStackTrace();
+
+            new Thread(() -> {
+                String msg = e.getMessage();
+                if (msg != null && (msg.contains("HTTP 409") || msg.contains("Linha bloqueada"))) {
+                    String aviso = "Esta linha está sendo editada por outro usuário.";
+                    if (msg.contains("Linha bloqueada")) {
+                        try {
+                            aviso = msg.substring(msg.indexOf("Linha bloqueada"));
+                        } catch (Exception ex) {
+                        }
+                    }
+                    final String avisoFinal = aviso;
+                    SwingUtilities.invokeLater(() -> {
+                        JOptionPane.showMessageDialog(tabela,
+                                "Não foi possível excluir:\n" + avisoFinal,
+                                "Ação Bloqueada",
+                                JOptionPane.WARNING_MESSAGE);
+                    });
+                } else {
+                    e.printStackTrace();
+                    SwingUtilities.invokeLater(() -> {
+                        JOptionPane.showMessageDialog(tabela, "Erro técnico: " + e.getMessage());
+                    });
+                }
+
+            }).start();
         }
 
     }

@@ -685,3 +685,478 @@
 [2025-11-29T01:27:08.476404500] Atenção em: Entrada de usuário: teste1
 [2025-11-29T01:27:21.740133800] Atenção em: [INSERT] - Linha inserida
 [2025-11-29T01:27:21.741130900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T01:45:20.357212100] Atenção em: Entrada de usuário: admin
+[2025-11-29T01:45:42.524372] Atenção em: Entrada de usuário: teste1
+[2025-11-29T01:46:06.765503700] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T01:46:06.767497400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T01:47:07.861260600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T01:47:07.863253500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T01:47:27.619232300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T01:47:27.621225800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T01:52:47.925950900] Atenção em: Entrada de usuário: admin
+[2025-11-29T01:53:06.690332300] Atenção em: Entrada de usuário: teste1
+[2025-11-29T01:53:20.170992700] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T01:53:20.172532400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T01:53:38.340822700] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T01:53:38.342201200] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T01:55:47.609310] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T01:55:47.611309700] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T01:55:51.328520300] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T01:55:51.330126100] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T01:56:57.169579300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T01:56:57.170811900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T01:57:09.634701500] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T01:57:09.636336900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T02:05:12.443826600] Atenção em: Entrada de usuário: admin
+[2025-11-29T02:05:38.152063400] Atenção em: Entrada de usuário: teste1
+[2025-11-29T02:05:54.309399100] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T02:05:54.311393600] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T02:15:10.903656] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T02:15:10.905650900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T02:24:13.307155900] Atenção em: Entrada de usuário: admin
+[2025-11-29T02:24:28.555053200] Atenção em: Entrada de usuário: teste1
+[2025-11-29T02:24:43.125241] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T02:24:43.127234300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T02:24:53.273657300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T02:24:53.275650300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T02:25:09.099905100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T02:25:09.101900500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T02:27:54.397139800] Atenção em: Entrada de usuário: admin
+[2025-11-29T02:28:10.260493] Atenção em: Entrada de usuário: teste1
+[2025-11-29T02:28:34.541653700] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T02:28:34.543645300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T02:28:45.586361300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T02:28:45.588418700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T02:28:47.724591800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T02:28:47.726001300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T02:42:06.348469600] Atenção em: Entrada de usuário: admin
+[2025-11-29T02:42:19.563889700] Atenção em: Entrada de usuário: teste1
+[2025-11-29T02:42:29.831160800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T02:42:29.833295700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T02:42:35.855139600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T02:42:35.857134] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T02:42:43.525277] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T02:42:43.526535100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T02:42:47.760205] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T02:42:47.762196300] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T02:43:06.362402800] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T02:43:06.363399] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T02:43:48.027642900] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T02:43:48.029557500] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T02:57:51.120163300] Atenção em: Entrada de usuário: admin
+[2025-11-29T02:58:09.696718800] Atenção em: Entrada de usuário: teste1
+[2025-11-29T02:58:19.295030500] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T02:58:19.296089400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T02:58:27.595659600] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T02:58:27.597655600] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T02:58:30.851522500] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T02:58:30.853032300] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T02:58:35.746464800] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T02:58:35.748087100] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T02:58:49.547469500] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T02:58:49.549462600] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:02:39.070305800] Atenção em: Entrada de usuário: teste1
+[2025-11-29T03:03:07.985147] Atenção em: Entrada de usuário: teste1
+[2025-11-29T03:03:42.707823800] Atenção em: Entrada de usuário: admin
+[2025-11-29T03:04:03.908399700] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:04:03.910576300] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:07:22.974003200] Atenção em: Entrada de usuário: admin
+[2025-11-29T03:07:48.000412700] Atenção em: Entrada de usuário: teste1
+[2025-11-29T03:08:10.411304200] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:08:10.413479500] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:11:39.104156500] Atenção em: Entrada de usuário: admin
+[2025-11-29T03:12:50.212626900] Atenção em: Entrada de usuário: teste1
+[2025-11-29T03:13:04.470948100] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:13:04.472123500] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:13:17.945795600] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:13:17.947523900] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:23:14.634207800] Atenção em: Entrada de usuário: admin
+[2025-11-29T03:23:32.733321500] Atenção em: Entrada de usuário: teste1
+[2025-11-29T03:23:46.226942500] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:23:46.227902800] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:27:50.305643800] Atenção em: Entrada de usuário: admin
+[2025-11-29T03:28:12.403725] Atenção em: Entrada de usuário: teste1
+[2025-11-29T03:28:41.892018] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:28:41.894110700] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:29:28.302728800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:29:28.304273200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:29:41.350389600] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:29:41.351415600] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:29:44.841575] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:29:44.843524100] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:30:00.671865600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:00.672862] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:03.138994900] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:03.140191600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:03.648204100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:03.650200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:04.343169200] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:04.344575500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:04.778444500] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:04.780166800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:05.164123100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:05.165855800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:05.543278500] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:05.544298100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:06.175077] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:06.175904400] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:06.628511700] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:06.629644300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:07.083710300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:07.084610800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:07.591805700] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:07.593639700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:08.171482500] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:08.172707400] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:09.478056400] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:30:09.480086900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:30:36.716827800] Atenção em: Entrada de usuário: teste3
+[2025-11-29T03:31:44.375958100] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:31:44.377607500] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:32:40.794093800] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:32:40.796088500] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:32:44.722656400] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:32:44.724052800] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:32:59.980901600] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:32:59.982872600] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:33:07.641899900] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:33:07.643402300] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:33:13.125347100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:33:13.126683900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:33:20.340878200] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:33:20.343168700] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:33:24.298409900] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:33:24.300397800] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:33:28.123074500] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:33:28.125239700] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:33:32.302168800] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:33:32.304127600] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:33:37.384103800] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:33:37.386101500] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:33:42.346878300] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:33:42.347872600] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:33:46.161380500] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:33:46.162451400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:33:48.448004700] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:33:48.448711400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:33:59.684029300] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:33:59.685779600] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:34:02.429110700] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:34:02.430865800] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:39:25.100140800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:25.116013200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:35.407632800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:35.409176200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:35.917930200] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:35.919927100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:36.298129200] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:36.300122600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:36.642345800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:36.643121300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:36.984408100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:36.985375700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:37.344565800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:37.346185900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:37.705001] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:37.706604900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:38.065556800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:38.066623700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:38.425694400] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:38.427432100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:38.785106300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:38.786105200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:39.144807100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:39.146633200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:40.959854800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:40.960579] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:41.482841800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:41.484813100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:41.831098100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:41.832629500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:42.230015400] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:42.230607500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:42.741019800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:42.742016300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:43.124197600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:43.124973100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:43.504161600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:43.506199900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:43.889675700] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:43.891670700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:44.269670300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:44.270664900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:44.652131100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:44.653127900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:45.041003800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:45.057965800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:45.446501800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:45.447497700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:45.829903200] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:45.831951600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:46.212373600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:46.213372400] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:46.560366500] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:46.561321] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:46.942908200] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:46.943798600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:47.334469600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:47.336075] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:47.718439] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:47.720434] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:48.111119300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:48.113113700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:48.499081400] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:48.500145500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:48.846878600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:48.848622200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:49.262595600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:49.263188900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:49.652850700] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:49.654044800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:50.045365100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:50.046364100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:50.392647] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:50.393850] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:50.737060300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:50.738064900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:51.095712300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:51.096546700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:51.455353800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T03:39:51.456767900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T03:39:53.457974500] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:39:53.460922800] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:39:55.082671700] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:39:55.083969300] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:39:56.328788400] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:39:56.330785200] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:39:56.880390800] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:39:56.881335500] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:39:57.268276600] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:39:57.269284400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:39:59.066620400] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:39:59.067991] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:39:59.939889200] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:39:59.941483100] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:40:03.948516300] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:40:03.949466] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:40:05.665906600] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:40:05.667902500] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:40:06.957518400] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:40:06.958699800] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:40:10.124568400] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:40:10.125545700] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:40:11.030126100] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:40:11.031867700] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:41:54.350324300] Atenção em: Entrada de usuário: admin
+[2025-11-29T03:41:58.716292200] Atenção em: Entrada de usuário: teste1
+[2025-11-29T03:43:45.518619600] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:43:45.521611400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:43:47.942640500] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:43:47.944632800] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:43:49.269123700] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:43:49.271217100] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T03:45:06.623342700] Atenção em: Entrada de usuário: teste1
+[2025-11-29T03:45:21.191961400] Atenção em: Entrada de usuário: teste1
+[2025-11-29T03:45:34.794428400] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T03:45:34.795914600] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:07:08.823627500] Atenção em: Entrada de usuário: admin
+[2025-11-29T04:07:25.682487800] Atenção em: Entrada de usuário: teste1
+[2025-11-29T04:07:40.471492700] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:07:40.473486900] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:07:43.475253300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:07:43.476448800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:07:44.210312300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:07:44.212307] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:07:44.886773200] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:07:44.888312100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:07:45.524729300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:07:45.526655600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:07:46.073455500] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:07:46.075451100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:07:46.578512600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:07:46.580215100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:07:48.446100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:07:48.448033500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:07:49.501840800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:07:49.502839100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:07:50.217974700] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:07:50.219703100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:07:51.160128800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:07:51.161542300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:07:52.795944700] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:07:52.796939100] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:07:58.064781900] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:07:58.066264100] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:07:59.288808100] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:07:59.290284200] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:08:00.366872500] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:08:00.368868300] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:08:04.519588600] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:08:04.520718300] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:08:30.620208900] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:08:30.621672200] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:08:32.278142] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:08:32.280134600] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:08:33.847733200] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:08:33.848736100] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:22:06.238094200] Atenção em: Entrada de usuário: admin
+[2025-11-29T04:22:37.475540700] Atenção em: Entrada de usuário: teste1
+[2025-11-29T04:23:01.529623200] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:23:01.531618200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:23:03.065862500] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:23:03.067516500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:23:04.016207800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:23:04.017358] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:23:04.941596300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:23:04.942938100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:23:05.642421600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:23:05.644415700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:23:06.466537400] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:23:06.468123800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:23:07.212569600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:23:07.214565300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:23:07.805535200] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:23:07.806532400] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:23:08.437887300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:23:08.439670700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:30:24.113346200] Atenção em: Entrada de usuário: admin
+[2025-11-29T04:30:39.992912200] Atenção em: Entrada de usuário: teste1
+[2025-11-29T04:30:47.867515900] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:30:47.868559200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:30:49.266831300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:30:49.268846100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:30:50.251161800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:30:50.253154100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:30:51.193957] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:30:51.194983300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:30:52.129551100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:30:52.131538600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:30:53.001701100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:30:53.002986500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:30:53.944744900] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:30:53.946737500] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:30:55.360611800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:30:55.361835200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:30:57.016153900] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:30:57.017149600] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:30:57.903052500] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:30:57.905046100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:30:59.389619300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:30:59.391820700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:31:00.405657800] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T04:31:00.406521] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T04:31:03.748519500] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:31:03.750512] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:31:05.514368200] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:31:05.516181700] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:31:08.196851500] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:31:08.198843400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:31:11.054703400] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:31:11.056692400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:31:13.296948] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:31:13.298941900] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:31:15.459162500] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:31:15.461156600] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:31:17.457663400] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:31:17.459106900] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:31:19.271537400] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:31:19.272593900] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:31:21.163440900] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:31:21.165915300] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:31:23.280136200] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:31:23.281276900] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:33:59.470841300] Atenção em: Entrada de usuário: admin
+[2025-11-29T04:34:22.070197500] Atenção em: Entrada de usuário: teste1
+[2025-11-29T04:35:25.327504] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:35:25.329501400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:35:26.930970800] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:35:26.933963] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:35:29.787360] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:35:29.789090400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:35:36.820369300] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T04:35:36.822356300] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T04:44:04.056168800] Atenção em: Entrada de usuário: admin
+[2025-11-29T05:21:12.594521400] Atenção em: Entrada de usuário: admin
+[2025-11-29T05:21:31.082492900] Atenção em: Entrada de usuário: teste1
+[2025-11-29T05:22:49.148644600] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T05:22:49.149553700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T05:22:55.879298700] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T05:22:55.881293900] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T05:23:21.702171400] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T05:23:21.703213] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T05:26:14.136599400] Atenção em: Entrada de usuário: admin
+[2025-11-29T05:26:51.621813] Atenção em: Entrada de usuário: teste1
+[2025-11-29T05:27:30.774355300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T05:27:30.775626700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T05:27:38.414882100] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T05:27:38.416849800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T05:27:42.425961] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T05:27:42.428044700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T05:27:46.455810300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T05:27:46.456782300] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T05:27:51.231667200] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T05:27:51.232663100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T11:56:00.137781] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T11:56:00.165168400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T11:56:05.587343200] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T11:56:05.588763700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T11:56:27.763822500] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T11:56:27.765819200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T11:57:03.196187] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T11:57:03.198181500] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T12:07:10.371734400] Atenção em: Entrada de usuário: admin
+[2025-11-29T12:07:18.470262300] Atenção em: Entrada de usuário: teste1
+[2025-11-29T12:34:19.181661300] Atenção em: Servidor não encontrado: null
+[2025-11-29T12:35:01.842306700] Atenção em: Entrada de usuário: admin
+[2025-11-29T12:35:02.115369200] Atenção em: Entrada de usuário: teste1
+[2025-11-29T12:40:29.728887400] Atenção em: Entrada de usuário: admin
+[2025-11-29T12:40:36.947397900] Atenção em: Entrada de usuário: teste1
+[2025-11-29T12:55:43.946133400] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-29T12:55:43.946133400] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-29T12:55:46.944578200] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-29T12:55:46.944578200] Erro em: Servidor OFF -> ConnectException: null
+[2025-11-29T12:57:57.505061800] Atenção em: Entrada de usuário: admin
+[2025-11-29T12:58:18.777813300] Atenção em: Entrada de usuário: teste1
+[2025-11-29T13:00:46.147713100] Atenção em: Entrada de usuário: admin
+[2025-11-29T13:02:12.768990700] Atenção em: Entrada de usuário: teste1
+[2025-11-29T13:24:57.812339100] Atenção em: Entrada de usuário: admin
+[2025-11-29T13:25:16.723659] Atenção em: Entrada de usuário: teste1
+[2025-11-29T13:28:12.197513300] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T13:28:12.200346300] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T13:28:21.005633400] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T13:28:21.006630600] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T13:30:58.900432200] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T13:30:58.902213200] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T13:33:56.653979500] Atenção em: Entrada de usuário: teste2
+[2025-11-29T13:35:52.798869600] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T13:35:52.799885800] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T13:37:23.350728600] Atenção em: Entrada de usuário: admin
+[2025-11-29T13:37:32.618154500] Atenção em: Entrada de usuário: teste1
+[2025-11-29T13:37:46.097654400] Atenção em: Entrada de usuário: teste2
+[2025-11-29T13:38:14.311728500] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T13:38:14.313027700] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T13:38:15.417977300] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T13:38:15.418972800] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T13:38:18.789402700] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T13:38:18.790886200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T13:39:05.727932100] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T13:39:05.729926700] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T13:40:06.048068400] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T13:40:06.050059400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T13:40:08.856403900] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T13:40:08.857702] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T13:40:29.415741400] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T13:40:29.416733800] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T13:40:39.566633900] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T13:40:39.569419400] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T13:41:06.259007500] Atenção em: Frame Reiniciado
+[2025-11-29T13:41:07.051452800] Atenção em: Coluna - AUTO RESIZE OFF
+[2025-11-29T13:42:28.861338700] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T13:42:28.862332100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T13:42:34.500174700] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T13:42:34.501799200] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T13:42:43.330330700] Atenção em: [INSERT] - Linha inserida
+[2025-11-29T13:42:43.332087100] Atenção em: [INSERT] - Linha não inserida
+[2025-11-29T13:43:00.953493900] Atenção em: [DELETE] - Linha excluída
+[2025-11-29T13:43:00.955481500] Atenção em: [DELETE] - Linha não excluída
+[2025-11-29T13:52:39.784344900] Atenção em: Entrada de usuário: admin

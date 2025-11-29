@@ -48,7 +48,7 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
     private SheetSocketClient wsClient;
     private SyncAmbiente sync;
 
-    String usuarioLogado;
+    public String usuarioLogado;
 
     String csv_server;
 
@@ -193,8 +193,6 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
         if (value.contains(";")) {
             value = value.replace(";", ",");
         }
-
-        System.out.println("ENTER detectado em row=" + row + " col=" + col);
 
         if (col == 0) {
             if (value.equals("") || value == null) {
@@ -823,7 +821,13 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
         try {
             String csv = api.loadSheet(csv_server);
 
-            SwingUtilities.invokeLater(() -> sync.aplicarCsvNoModelo(csv));
+            SwingUtilities.invokeLater(() -> {
+                sync.aplicarCsvNoModelo(csv);
+                if (oldCellRow > ev.afterRow()) {
+                    oldCellRow += 1;
+                }
+                selecao_line(oldCellRow, oldCellCol);
+            });
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -840,7 +844,27 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
         try {
             String csv = api.loadSheet(csv_server);
 
-            SwingUtilities.invokeLater(() -> sync.aplicarCsvNoModelo(csv));
+            SwingUtilities.invokeLater(() -> {
+                sync.aplicarCsvNoModelo(csv);
+
+                if (ev.from() < ev.to()) {
+
+                    if (oldCellRow == ev.from()) {
+                        oldCellRow = ev.to();
+                        return;
+                    } else if (oldCellRow > ev.from() && oldCellRow <= ev.to()) {
+                        oldCellRow -= 1;
+                    }
+                } else if (ev.from() > ev.to()) {
+                    if (oldCellRow == ev.from()) {
+                        oldCellRow = ev.to();
+                    } else if (oldCellRow >= ev.to() && oldCellRow < ev.from()) {
+                        oldCellRow += 1;
+                    }
+                }
+
+                selecao_line(oldCellRow, oldCellCol);
+            });
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -856,7 +880,11 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
         try {
             String csv = api.loadSheet(csv_server);
 
-            SwingUtilities.invokeLater(() -> sync.aplicarCsvNoModelo(csv));
+            SwingUtilities.invokeLater(() -> {
+                sync.aplicarCsvNoModelo(csv);
+
+                selecao_line(oldCellRow, oldCellCol);
+            });
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -878,6 +906,7 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
 
         // VIEW -> MODEL
         int modelRow = tabela_news.convertRowIndexToModel(viewRow);
+        int modelCol = tabela_news.convertRowIndexToModel(viewCol);
 
         // se o usuário estiver embaixo da última de dados (ex.: linha TOTAL),
         // força para usar a última linha de dados como "afterRow"
@@ -913,10 +942,7 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
         // 1) insere visualmente na tabela
         modelo.insertRow(insertModelIndex, novaLinha);
 
-        sync.onInsertRow(modelRow);
-
-        selecao_line(viewRow, viewCol);
-
+        sync.onInsertRow(modelRow, modelCol);
     }
 
     void move_line(int viewRow, int viewCol, int rowDestView) {
@@ -928,6 +954,7 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
 
         // Converte para índices do modelo (dados reais)
         int modelRow = tabela_news.convertRowIndexToModel(viewRow);
+        int modelCol = tabela_news.convertRowIndexToModel(viewCol);
         int rowDestModel = tabela_news.convertRowIndexToModel(rowDestView);
 
         // =================================================================
@@ -964,10 +991,9 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
             // Envia para o servidor:
             // Path, from=1, to=4
             // O servidor vai calcular: realFrom=2, realTo=5 (Ok!)
-            sync.onTrocarLine(modelRow, rowDestModel, usuarioLogado);
+            sync.onTrocarLine(modelRow, rowDestModel, modelCol, usuarioLogado);
 
             // Mantém a seleção visual na nova posição
-            selecao_line(rowDestView, viewCol);
         }
 
         // Limpeza de variáveis de controle de drag
@@ -978,48 +1004,37 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
 
     void delete_line(int viewRow, int viewCol) {
         if (viewRow < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha para excluir.");
             return;
         }
-        // 2. Converte para índice do Modelo (caso a tabela esteja ordenada/filtrada)
+
         int modelRow = tabela_news.convertRowIndexToModel(viewRow);
-        int totalRows = tabela_news.getModel().getRowCount();
+        int modelCol = tabela_news.convertRowIndexToModel(viewCol);
 
-        // --- REGRAS DE PROTEÇÃO (IGUAIS AO SERVIDOR) ---
-        // Regra A: A Linha 0 (Fixa) não pode ser apagada
-        if (modelRow == 0) {
-            return;
-        }
-
-        // Regra B: O Rodapé não pode ser apagado
-        // A última linha (index = totalRows - 1) é o rodapé
-        if (modelRow >= totalRows - 1) {
-            return;
-        }
-
-        // 3. Confirmação do Usuário
+        // Confirmação
         int confirm = JOptionPane.showConfirmDialog(this,
-                "Tem certeza que deseja excluir a linha " + (modelRow) + "?\nEsta ação não pode ser desfeita.",
-                "Confirmar Exclusão",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE);
+                "Tem certeza que deseja excluir a linha " + (modelRow + 1) + "?",
+                "Excluir", JOptionPane.YES_NO_OPTION);
 
         if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
 
-        sync.onDeleteLine(modelRow);
-
-        selecao_line(viewRow - 1, viewCol);
+        sync.onDeleteLine(modelRow, modelCol);
 
     }
 
-    void selecao_line(int viewRow, int viewCol) {
-        // 2) informa o servidor: afterRow = modelRow (linha de dados DEPOIS da qual
+    public void selecao_line(int viewRow, int viewCol) {
         SwingUtilities.invokeLater(() -> {
-            int mRow = tabela_news.convertRowIndexToModel(viewRow);
-            int mCol = tabela_news.convertColumnIndexToModel(viewCol);
-            tabela_news.setRowSelectionInterval(mRow, mRow);
-            tabela_news.setColumnSelectionInterval(mCol, mCol);
+            // Proteção: se a linha/coluna não existe mais, não faz nada
+            if (viewRow < 0 || viewRow >= tabela_news.getRowCount()) {
+                return;
+            }
+            if (viewCol < 0 || viewCol >= tabela_news.getColumnCount()) {
+                return;
+            }
+
+            tabela_news.changeSelection(viewRow, viewCol, false, false);
         });
     }
 

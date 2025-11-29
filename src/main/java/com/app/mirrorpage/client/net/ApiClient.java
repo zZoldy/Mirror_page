@@ -287,7 +287,9 @@ public class ApiClient {
         try {
             body = (resp.body() == null) ? null : resp.body().toString();
         } catch (Exception ignored) {
+            body = "Erro ao ler corpo da resposta";
         }
+
         throw new ApiHttpException(code, "HTTP " + code + " em " + url + (body != null ? " → " + body : ""));
     }
 
@@ -541,7 +543,7 @@ public class ApiClient {
         ensure2xx(resp, url); // lança ApiHttpException se não for OK
     }
 
-    public void insertRow(String path, int afterRow) throws IOException, InterruptedException {
+    public void insertRow(String path, int afterRow, String username) throws IOException, InterruptedException {
         final String norm = normalizePath(path);
 
         String url = baseUrl + "/api/sheet/row/insert"
@@ -560,7 +562,7 @@ public class ApiClient {
         ensure2xx(resp, url);
     }
 
-    public void deleteRow(String path, int row) throws IOException, InterruptedException {
+    public void deleteRow(String path, int row, String username) throws IOException, InterruptedException {
         final String norm = normalizePath(path);
         final String url = baseUrl + "/api/sheet/deleteRow";
 
