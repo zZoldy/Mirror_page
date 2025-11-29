@@ -1,6 +1,7 @@
 package com.app.mirrorpage.client.net;
 
 import com.app.mirrorpage.client.dto.CellChangeEvent;
+import com.app.mirrorpage.client.dto.RowDeletedEvent;
 import com.app.mirrorpage.client.dto.RowInsertedEvent;
 import com.app.mirrorpage.client.dto.RowMoveEvent;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -18,6 +19,7 @@ public class SheetSocketClient extends WebSocketClient {
     private final Consumer<CellChangeEvent> onCellChange;
     private final Consumer<RowInsertedEvent> onRowInserted;
     private final Consumer<RowMoveEvent> onRowMoved;
+    private final Consumer<RowDeletedEvent> onRowDeleted;
     private final String subscriptionId;
 
     public SheetSocketClient(
@@ -25,13 +27,15 @@ public class SheetSocketClient extends WebSocketClient {
             String topic,
             Consumer<CellChangeEvent> onCellChange,
             Consumer<RowInsertedEvent> onRowInserted,
-            Consumer<RowMoveEvent> onRowMoved
+            Consumer<RowMoveEvent> onRowMoved,
+            Consumer<RowDeletedEvent> onRowDeleted
     ) {
         super(serverUri);
         this.topic = topic;
         this.onCellChange = onCellChange;
         this.onRowInserted = onRowInserted;
         this.onRowMoved = onRowMoved;
+        this.onRowDeleted = onRowDeleted;
         this.subscriptionId = "sub-" + UUID.randomUUID();
     }
 
@@ -89,6 +93,12 @@ public class SheetSocketClient extends WebSocketClient {
                 }
                 return;
             }
+            
+            if (json.has("modelRow")) {
+                RowDeletedEvent ev = mapper.readValue(body, RowDeletedEvent.class);
+                if (onRowDeleted != null) onRowDeleted.accept(ev);
+                return;
+            }
 
             if (json.has("afterRow")) {
                 // É RowInsertedEvent
@@ -99,7 +109,7 @@ public class SheetSocketClient extends WebSocketClient {
                 return;
             }
 
-            // 3) Evento de LINHA MOVIDA (tem "fromRow" e "toRow")
+            // 3) Evento de LINHA MOVIDA (tem "from" e "to")
             if (json.has("from")) {
                 RowMoveEvent ev = mapper.readValue(body, RowMoveEvent.class);
                 if (onRowMoved != null) {

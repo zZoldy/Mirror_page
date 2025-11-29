@@ -6,6 +6,7 @@ import com.app.mirrorpage.app.listener.Cliente_listener;
 import com.app.mirrorpage.app.model.Tabela;
 import com.app.mirrorpage.app.table.SyncAmbiente;
 import com.app.mirrorpage.client.dto.CellChangeEvent;
+import com.app.mirrorpage.client.dto.RowDeletedEvent;
 import com.app.mirrorpage.client.dto.RowInsertedEvent;
 import com.app.mirrorpage.client.dto.RowMoveEvent;
 import com.app.mirrorpage.client.net.ApiClient;
@@ -47,14 +48,17 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
     private SheetSocketClient wsClient;
     private SyncAmbiente sync;
 
+    String usuarioLogado;
+
     String csv_server;
 
     AtomicBoolean acao_line = new AtomicBoolean(true);
 
-    public jInternal_tabela(DefaultTableModel model, ApiClient api, Cliente_listener listener, String csv_server) {
+    public jInternal_tabela(DefaultTableModel model, ApiClient api, Cliente_listener listener, String csv_server, String usuarioLogado) {
         this.api = api;
         this.csv_server = csv_server;
         this.listener = listener;
+        this.usuarioLogado = usuarioLogado;
 
         initComponents();
 
@@ -278,7 +282,29 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
         }
 
         if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
+            Funcoes.acao_com_trava(() -> {
+                tabela_news.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
+                new SwingWorker<Void, Void>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        Thread.sleep(300);
+                        return null;
+                    }
+
+                    @Override
+                    protected void done() {
+                        try {
+                            event_delete();
+                            Log.registrarErro_noEx("[DELETE] - Linha excluída");
+                        } finally {
+                            acao_line.set(true); // 🔓 libera de novo
+                            tabela_news.setCursor(Cursor.getDefaultCursor());
+                            Log.registrarErro_noEx("[DELETE] - Linha não excluída");
+                        }
+                    }
+                }.execute();
+            }, acao_line);
         }
 
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -295,6 +321,17 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
             oldCellCol = viewColEditing;
         }
     }//GEN-LAST:event_tabela_newsKeyPressed
+
+    void event_delete() {
+        int viewRow = tabela_news.getSelectedRow();
+        int viewCol = tabela_news.getSelectedColumn();
+
+        if (viewRow < 0 || viewCol < 0) {
+            return;
+        }
+
+        delete_line(viewRow, viewCol);
+    }
 
     void event_insert() {
         int viewRow = tabela_news.getSelectedRow();
@@ -695,7 +732,8 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
                     topic,
                     this::onCellChangeEvent,
                     this::onRowInsertedEvent,
-                    this::onRowMovedEvent
+                    this::onRowMovedEvent,
+                    this::onDeletedEvent
             );
 
             wsClient.connect(); // assíncrono
@@ -792,47 +830,36 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
     }
 
     private void onRowMovedEvent(RowMoveEvent ev) {
-        SwingUtilities.invokeLater(() -> applyRowMove(ev));
+        // 1. Filtro de Caminho
+        if (!csv_server.equals(ev.path())) {
+            return;
+        }
+
+        System.out.println("[WS] Linha movida DE: " + ev.from() + " PARA: " + ev.to() + " - Quem: " + ev.user());
+
+        try {
+            String csv = api.loadSheet(csv_server);
+
+            SwingUtilities.invokeLater(() -> sync.aplicarCsvNoModelo(csv));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
-    private void applyRowMove(RowMoveEvent ev) {
-        DefaultTableModel modelo = (DefaultTableModel) tabela_news.getModel();
-        int totalRows = modelo.getRowCount();
-        if (totalRows == 0) {
+    private void onDeletedEvent(RowDeletedEvent ev) {
+        if (!csv_server.equals(ev.path())) {
             return;
         }
 
-        // Se a última linha é ENCERRAMENTO / TOTAL, penúltima = última de dados
-        int lastDataModelRow = Math.max(0, totalRows - 2);
+        System.out.println("[WS] Linha removida: " + ev.modelRow() + " Arquivo: " + ev.path() + " - Quem: " + ev.user());
 
-        int from = ev.from();
-        int to = ev.to();
+        try {
+            String csv = api.loadSheet(csv_server);
 
-        // sanity-check: ignora evento fora do range
-        if (from < 0 || from > lastDataModelRow
-                || to < 0 || to > lastDataModelRow) {
-            System.out.println("[WS] RowMoveEvent ignorado (fora da faixa). from="
-                    + from + " to=" + to + " lastData=" + lastDataModelRow);
-            return;
+            SwingUtilities.invokeLater(() -> sync.aplicarCsvNoModelo(csv));
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-
-        // move efetivamente a linha no MODEL
-        modelo.moveRow(from, from, to);
-
-        // renumera a coluna 0 do jeitinho que você quer
-        // (1,2,3,... até a penúltima linha)
-        int numero = 1;
-        for (int row = 1; row <= lastDataModelRow; row++) {
-            String novoValor = String.valueOf(numero);
-            Object atual = modelo.getValueAt(row, 0);
-            if (atual == null || !novoValor.equals(atual.toString())) {
-                modelo.setValueAt(novoValor, row, 0);
-            }
-            numero++;
-        }
-
-
-        System.out.println("[WS] applyRowMove from=" + from + " to=" + to);
     }
 
     void add_line(int viewRow, int viewCol) {
@@ -892,90 +919,108 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
 
     }
 
-    void selecao_line(int viewRow, int viewCol) {
-        // 2) informa o servidor: afterRow = modelRow (linha de dados DEPOIS da qual
-        int mRow = tabela_news.convertRowIndexToModel(viewRow);
-        int mCol = tabela_news.convertColumnIndexToModel(viewCol);
-        SwingUtilities.invokeLater(() -> {
-            att_ref_num_pag();
-            tabela_news.setRowSelectionInterval(mRow, mRow);
-            tabela_news.setColumnSelectionInterval(mCol, mCol);
-        });
-    }
-
     void move_line(int viewRow, int viewCol, int rowDestView) {
-        // nada selecionado
         if (viewRow < 0) {
-            restaurarValorAnteriorSeMesmaCelula(viewRow, viewCol);
             return;
         }
 
         final DefaultTableModel modelo = (DefaultTableModel) tabela_news.getModel();
-        int totalRows = modelo.getRowCount();
-        if (totalRows == 0) {
-            restaurarValorAnteriorSeMesmaCelula(viewRow, viewCol);
-            return;
-        }
 
-        // última linha de dados (penúltima da tabela: antes da TOTAL/ENCERRAMENTO)
-        int lastDataModelRow = Math.max(0, totalRows - 2);
-
-        // VIEW -> MODEL
+        // Converte para índices do modelo (dados reais)
         int modelRow = tabela_news.convertRowIndexToModel(viewRow);
         int rowDestModel = tabela_news.convertRowIndexToModel(rowDestView);
 
-        // valida destino (não pode ser fora da área de dados)
-        if (rowDestModel < 1 || rowDestModel > lastDataModelRow) {
+        // =================================================================
+        // 🔒 BLOQUEIO DA LINHA 0 FIXA
+        // =================================================================
+        // Regra 1: A Linha 0 não sai do lugar
+        if (modelRow == 0) {
+            System.out.println("Bloqueado: A linha 0 é fixa.");
+            restaurarValorAnteriorSeMesmaCelula(viewRow, viewCol); // Se tiver lógica de drag visual
+            return;
+        }
+
+        // Regra 2: Nenhuma linha pode ocupar o lugar da Linha 0
+        if (rowDestModel == 0) {
+            System.out.println("Bloqueado: Não pode mover para a posição 0.");
             restaurarValorAnteriorSeMesmaCelula(viewRow, viewCol);
             return;
         }
 
-        // se destino == origem, não faz nada
-        if (rowDestModel == modelRow) {
+        // =================================================================
+        // 🔒 BLOQUEIO DO RODAPÉ
+        // =================================================================
+        int lastDataModelRow = modelo.getRowCount() - 2; // -1 é Rodapé, -2 é último dado móvel
+
+        if (modelRow > lastDataModelRow || rowDestModel > lastDataModelRow) {
             restaurarValorAnteriorSeMesmaCelula(viewRow, viewCol);
-            return;
+            return; // Protege rodapé
         }
 
-        // move a linha no MODEL
-        modelo.moveRow(modelRow, modelRow, rowDestModel);
+        // Se passar daqui, o movimento é VÁLIDO (ex: Row 1 -> Row 4)
+        if (rowDestModel != modelRow) {
+            modelo.moveRow(modelRow, modelRow, rowDestModel);
 
-        // avisa o servidor que trocou as linhas
-        sync.onTrocarLine(modelRow, rowDestModel);
+            // Envia para o servidor:
+            // Path, from=1, to=4
+            // O servidor vai calcular: realFrom=2, realTo=5 (Ok!)
+            sync.onTrocarLine(modelRow, rowDestModel, usuarioLogado);
 
-        // seleciona a linha de destino na VIEW (rowDestView)
-        selecao_line(rowDestView, viewCol);
+            // Mantém a seleção visual na nova posição
+            selecao_line(rowDestView, viewCol);
+        }
 
-        System.out.println("OldCellValue: " + oldCellValue.toString());
-
-        // se deu certo, pode limpar o backup
+        // Limpeza de variáveis de controle de drag
         oldCellValue = null;
         oldCellRow = -1;
         oldCellCol = -1;
     }
 
-    void att_ref_num_pag() {
-        DefaultTableModel modelo = (DefaultTableModel) tabela_news.getModel();
-        int totalRows = modelo.getRowCount();
+    void delete_line(int viewRow, int viewCol) {
+        if (viewRow < 0) {
+            return;
+        }
+        // 2. Converte para índice do Modelo (caso a tabela esteja ordenada/filtrada)
+        int modelRow = tabela_news.convertRowIndexToModel(viewRow);
+        int totalRows = tabela_news.getModel().getRowCount();
 
-        // precisa ter pelo menos: linha 0, alguma de dados e linha de encerramento
-        if (totalRows < 3) {
+        // --- REGRAS DE PROTEÇÃO (IGUAIS AO SERVIDOR) ---
+        // Regra A: A Linha 0 (Fixa) não pode ser apagada
+        if (modelRow == 0) {
             return;
         }
 
-        // penúltima linha da tabela = última de dados
-        int lastDataRow = totalRows - 2;
-
-        int numero = 1; // numeração começa em 1
-
-        // renumera da linha 1 até a penúltima
-        for (int row = 1; row <= lastDataRow; row++) {
-            String novoValor = String.valueOf(numero);
-            modelo.setValueAt(novoValor, row, 0);
-
-            // se quiser sincronizar com servidor:
-            sync.onCellEdit(row, 0, novoValor);
-            numero++;
+        // Regra B: O Rodapé não pode ser apagado
+        // A última linha (index = totalRows - 1) é o rodapé
+        if (modelRow >= totalRows - 1) {
+            return;
         }
+
+        // 3. Confirmação do Usuário
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Tem certeza que deseja excluir a linha " + (modelRow) + "?\nEsta ação não pode ser desfeita.",
+                "Confirmar Exclusão",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        sync.onDeleteLine(modelRow);
+
+        selecao_line(viewRow - 1, viewCol);
+
+    }
+
+    void selecao_line(int viewRow, int viewCol) {
+        // 2) informa o servidor: afterRow = modelRow (linha de dados DEPOIS da qual
+        SwingUtilities.invokeLater(() -> {
+            int mRow = tabela_news.convertRowIndexToModel(viewRow);
+            int mCol = tabela_news.convertColumnIndexToModel(viewCol);
+            tabela_news.setRowSelectionInterval(mRow, mRow);
+            tabela_news.setColumnSelectionInterval(mCol, mCol);
+        });
     }
 
 

@@ -4,6 +4,7 @@ import com.app.mirrorpage.app.model.Tabela;
 import com.app.mirrorpage.app.tema.ThemeApplier;
 import com.app.mirrorpage.client.net.ApiClient;
 import com.app.mirrorpage.ui.jInternal_tabela;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -52,18 +53,6 @@ public class SyncAmbiente {
         }
     }
 
-    /*──────── 3) Exclusão de linha ────────*/
-    public void onDeleteRow(int row) {
-        try {
-            api.deleteRow(sheetPath, row);
-
-            String csv = api.loadSheet(sheetPath);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
     public void aplicarCsvNoModelo(String csvTexto) {
         // Usa sua lógica já existente de montar o modelo a partir do CSV
         DefaultTableModel novoModelo = Tabela.modeloDeCsv(csvTexto);
@@ -87,23 +76,30 @@ public class SyncAmbiente {
         tabela.tabela_tempo();
     }
 
-    public void onTrocarLine(int fromRow, int toRow) {
+    public void onTrocarLine(int fromModelRow, int toModelRow, String user) {
         try {
+            api.moveRow(sheetPath, fromModelRow, toModelRow, user);
 
-            // 1) Manda pro servidor a troca (MOVE ROW)
-            api.moveRow(sheetPath, fromRow, toRow);
-
-            // 2) Recarrega CSV atualizado
             String csv = api.loadSheet(sheetPath);
 
-            // 3) Atualiza tabela na UI
-            SwingUtilities.invokeLater(() -> {
-                aplicarCsvNoModelo(csv);
-            });
+            SwingUtilities.invokeLater(() -> aplicarCsvNoModelo(csv));
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void onDeleteLine(int row) {
+        try {
+            api.deleteRow(sheetPath, row);
+            String csv = api.loadSheet(sheetPath);
+
+            SwingUtilities.invokeLater(() -> aplicarCsvNoModelo(csv));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

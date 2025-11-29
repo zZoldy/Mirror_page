@@ -14,6 +14,7 @@ com\app\mirrorpage\client\net\SheetSocketClient.class
 com\app\mirrorpage\ui\config\RestaurarProduto$1.class
 com\app\mirrorpage\ui\config\Configuracoes$2.class
 com\app\mirrorpage\ui\Principal$2.class
+com\app\mirrorpage\ui\jInternal_tabela$8.class
 com\app\mirrorpage\ui\Principal$5.class
 com\app\mirrorpage\ui\config\PageTema.class
 com\app\mirrorpage\ui\jInternal_console$2.class
@@ -39,6 +40,7 @@ com\app\mirrorpage\app\tema\ThemeManager.class
 com\app\mirrorpage\app\listener\Cliente_listener.class
 com\app\mirrorpage\ui\Principal$15.class
 com\app\mirrorpage\ui\Principal$9.class
+com\app\mirrorpage\client\dto\RowDeletedEvent.class
 com\app\mirrorpage\ui\Principal$16.class
 com\app\mirrorpage\ui\config\PageTema$1.class
 com\app\mirrorpage\app\model\Tabela$2.class

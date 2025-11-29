@@ -562,7 +562,7 @@ public class ApiClient {
 
     public void deleteRow(String path, int row) throws IOException, InterruptedException {
         final String norm = normalizePath(path);
-        final String url = baseUrl + "/api/sheet/row/delete";
+        final String url = baseUrl + "/api/sheet/deleteRow";
 
         String json = mapper.writeValueAsString(Map.of(
                 "path", norm,
@@ -584,12 +584,18 @@ public class ApiClient {
         ensure2xx(resp, url);
     }
 
-    public void moveRow(String path, int from, int to)
+    public void moveRow(String path, int from, int to, String user)
             throws IOException, InterruptedException {
 
         String url = baseUrl + "/api/sheet/moveRow";
+
         String json = mapper.writeValueAsString(
-                Map.of("path", path, "from", from, "to", to)
+                Map.of(
+                        "path", path,
+                        "from", from,
+                        "to", to,
+                        "user", user
+                )
         );
 
         HttpRequest.Builder b = HttpRequest.newBuilder(URI.create(url))

@@ -4,9 +4,5 @@
  */
 package com.app.mirrorpage.client.dto;
 
-public record RowMoveEvent(
-        String path,   // "/BDBR/Prelim.csv"
-        int from,      // índice origem (lado cliente / servidor)
-        int to,         // índice destino
-        String user
-) {}
+public record RowDeletedEvent(String path, int modelRow, String user) {
+}

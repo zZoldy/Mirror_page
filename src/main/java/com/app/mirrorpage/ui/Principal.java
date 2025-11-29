@@ -251,7 +251,7 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
                     }
 
                     // 4) Cria o novo jInternal_tabela com o MODEL pronto
-                    tabela = new jInternal_tabela(model, api, this, nomeArquivoRelativo);
+                    tabela = new jInternal_tabela(model, api, this, nomeArquivoRelativo, session.username());
                     try {
                         tabela.jScrollPane1.setBorder(new EmptyBorder(0, 0, 0, 0));
                         tabela.setBorder(new EmptyBorder(0, 0, 0, 0));
