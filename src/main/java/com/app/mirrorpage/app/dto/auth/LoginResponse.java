@@ -8,5 +8,4 @@ public class LoginResponse {
     public String refreshToken;
     public long exp;             // epoch seconds
     public List<String> roles;     // ["ROLE_REDACAO", ...]
-
 }

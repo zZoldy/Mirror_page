@@ -12,26 +12,33 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>24</maven.compiler.release>
+        <maven.compiler.release>24</maven.compiler.release> 
         <exec.mainClass>com.app.mirrorpage.app.MirrorPage</exec.mainClass>
     </properties>
 
     <build>
         <plugins>
 
-            <!-- COMPILAÇÃO -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
-                <configuration>
+                <version>3.13.0</version> <configuration>
                     <compilerArgs>
                         <arg>--enable-preview</arg>
+                        <arg>-Xlint:none</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>
 
-            <!-- 🔹 GERAR JAR EXECUTÁVEL COM CLASS-PATH PARA lib/ -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.6.3</version>
+                <configuration>
+                    <skip>true</skip>             <doclint>none</doclint>       <failOnError>false</failOnError>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -47,7 +54,6 @@
                 </configuration>
             </plugin>
 
-            <!-- 🔹 COPIA TODAS AS DEPENDÊNCIAS PARA target/lib -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -82,6 +88,7 @@
             <artifactId>Java-WebSocket</artifactId>
             <version>1.5.7</version>
         </dependency>
-    </dependencies>
+        
+        </dependencies>
 
 </project>

@@ -4,7 +4,10 @@ import com.app.mirrorpage.app.model.file.CsvModelService;
 import com.app.mirrorpage.app.model.file.CsvModelType;
 import com.app.mirrorpage.client.net.ApiClient;
 import com.app.mirrorpage.ui.Principal;
+import java.awt.Cursor;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class RestaurarProduto extends javax.swing.JPanel {
 
@@ -16,8 +19,11 @@ public class RestaurarProduto extends javax.swing.JPanel {
         this.principal = principal;
 
         initComponents();
+
         lbl_info_produto.setVisible(false);
         txt_produto.setVisible(false);
+        
+        carregarCombo();
     }
 
     @SuppressWarnings("unchecked")
@@ -35,8 +41,17 @@ public class RestaurarProduto extends javax.swing.JPanel {
         lbl_info_produto.setFont(new java.awt.Font("Globotipo Corporativa Textos", 1, 12)); // NOI18N
         lbl_info_produto.setText("Informe o Produto:");
 
-        box_produto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BDBR", "BDDF", "DF1", "DF2", "GCO", "GE", " ", "OUTRO", "TODOS" }));
+        box_produto.addItem(" ");
         box_produto.setToolTipText("");
+        box_produto.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                box_produtoPopupMenuWillBecomeVisible(evt);
+            }
+        });
         box_produto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 box_produtoActionPerformed(evt);
@@ -116,175 +131,146 @@ public class RestaurarProduto extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void carregarCombo() {
+        new Thread(() -> {
+            try {
+                // Certifique-se que getPastas() existe no ApiClient!
+                List<String> pastas = api.getPastas();
+
+                SwingUtilities.invokeLater(() -> {
+                    box_produto.removeAllItems();
+                    if (pastas != null) {
+                        for (String pasta : pastas) {
+                            box_produto.addItem(pasta);
+                        }
+                    }
+                    box_produto.addItem(" ");
+                    box_produto.addItem("OUTRO");
+                    box_produto.addItem("TODOS");
+                    box_produto.setSelectedItem(" "); // Seleciona o vazio por padrão
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                SwingUtilities.invokeLater(() -> box_produto.addItem("Erro ao carregar"));
+            }
+        }).start();
+    }
+    
     private void btn_applyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_applyActionPerformed
-        // TODO add your handling code here:
-        String produto = box_produto.getSelectedItem().toString().trim();
-        if (produto.isEmpty() || produto.equalsIgnoreCase("Selecione")) {
+        String selecionado = (String) box_produto.getSelectedItem();
+        if (selecionado == null || selecionado.isBlank() || selecionado.equals("Selecione")) {
             JOptionPane.showMessageDialog(this, "Selecione um produto.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        if (produto.equals("OUTRO")) {
-            System.out.println("CRIAR PRODUTO:");
-            produto = txt_produto.getText().trim();
-            criar_produto(produto);
+        // Define qual produto será processado
+        final String produtoAlvo = selecionado.equals("OUTRO") ? txt_produto.getText().trim().toUpperCase() : selecionado;
+
+        if (produtoAlvo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Informe o nome do produto.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        if (produto.equals("TODOS")) {
-            restaurar_todos_produtos();
-            return;
-        }
+        // Prepara UI para carregamento
+        btn_apply.setEnabled(false);
+        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-        try {
-            CsvModelService service = new CsvModelService(api);
-            String baseDir = "/Produtos/" + produto;
-
-            if (principal.tabela != null) {
-                String objeto = principal.lbl_arquivo_aberto.getText().split("-")[0].trim();
-
-                if (objeto.equals(produto)) {
-                    try {
-                        principal.tabela.dispose();     // fecha e remove do Desktop
-                        principal.clear_desktop();
-                    } finally {
-                        principal.tabela = null;        // limpa referência
-                    }
+        // 🟢 THREAD PARA NÃO TRAVAR A TELA
+        new Thread(() -> {
+            try {
+                if (selecionado.equals("TODOS")) {
+                    processarTodos();
+                    SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this,
+                            "Todos os produtos foram verificados/restaurados.", "Concluído", JOptionPane.INFORMATION_MESSAGE));
+                } else {
+                    processarProduto(produtoAlvo);
+                    SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this,
+                            "Produto " + produtoAlvo + " processado com sucesso.", "OK", JOptionPane.INFORMATION_MESSAGE));
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+                SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this,
+                        "Erro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE));
+            } finally {
+                // Restaura UI
+                SwingUtilities.invokeLater(() -> {
+                    btn_apply.setEnabled(true);
+                    setCursor(Cursor.getDefaultCursor());
+                });
             }
-
-            // arquivos padrão
-            service.salvar(CsvModelType.PRELIMINAR, baseDir, produto, "Prelim");
-            service.salvar(CsvModelType.FINAL, baseDir, produto, "Final");
-
-            // extras de DF2
-            if (produto.equals("DF2")) {
-                service.salvar(CsvModelType.BOLETIM_CTL1, baseDir, produto, "Boletim_ctl1");
-                service.salvar(CsvModelType.BOLETIM_CTL2, baseDir, produto, "Boletim_ctl2");
-            }
-
-            JOptionPane.showMessageDialog(this,
-                    "Arquivos de " + produto + " verificados/restaurados no servidor.",
-                    "OK", JOptionPane.INFORMATION_MESSAGE);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this,
-                    "Erro ao restaurar no servidor: " + e.getMessage(),
-                    "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-
-
+        }).start();
     }//GEN-LAST:event_btn_applyActionPerformed
 
 
     private void box_produtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_produtoActionPerformed
-        // TODO add your handling code here:
-        if (box_produto.getSelectedItem().toString().equals("OUTRO")) {
-            lbl_info_produto.setVisible(true);
-            txt_produto.setVisible(true);
-        } else {
-            lbl_info_produto.setVisible(false);
-            txt_produto.setVisible(false);
+        Object item = box_produto.getSelectedItem();
+        if (item != null) {
+            boolean isOutro = "OUTRO".equals(item.toString());
+            lbl_info_produto.setVisible(isOutro);
+            txt_produto.setVisible(isOutro);
         }
 
     }//GEN-LAST:event_box_produtoActionPerformed
 
-    void restaurar_todos_produtos() {
+    private void box_produtoPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_box_produtoPopupMenuWillBecomeVisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_box_produtoPopupMenuWillBecomeVisible
 
-        int total = box_produto.getItemCount();
+    // Lógica unificada para 1 produto
+    private void processarProduto(String produto) throws Exception {
+        System.out.println("Processando: " + produto);
 
-        for (int i = 0; i < total; i++) {
-
-            String produto = box_produto.getItemAt(i).trim();
-
-            // pular vazio: " " ou ""
-            if (produto.isEmpty()) {
-                continue;
+        // 1. Fechar tabela se estiver aberta (Executar na Thread da UI)
+        SwingUtilities.invokeLater(() -> {
+            if (principal.tabela != null) {
+                String aberto = principal.lbl_arquivo_aberto.getText();
+                // Verifica se o texto começa com o produto (ex: "DF2 - Prelim")
+                if (aberto != null && aberto.startsWith(produto + " -")) {
+                    try {
+                        principal.tabela.dispose();
+                        principal.clear_desktop();
+                    } finally {
+                        principal.tabela = null;
+                    }
+                }
             }
+        });
 
-            // pular "TODOS"
-            if (produto.equalsIgnoreCase("TODOS")) {
-                continue;
-            }
+        // 2. Operações de Rede (Salvar/Restaurar)
+        CsvModelService service = new CsvModelService(api);
+        String baseDir = "/Produtos/" + produto;
 
-            // tratar "OUTROS"
-            if (produto.equalsIgnoreCase("OUTRO")) {
-                // 👉 se NÃO tiver pasta específica "OUTROS", só pula:
-                // continue;
+        // Padrão
+        service.salvar(CsvModelType.PRELIMINAR, baseDir, produto, "Prelim");
+        service.salvar(CsvModelType.FINAL, baseDir, produto, "Final");
 
-                // OU, se existir pasta /Produtos/OUTROS, e você quiser restaurar também:
-                // (nesse caso, remove o `continue` e deixa cair no restaurar_produto)
-                // (por enquanto vou pular)
+        // Específico DF2 (Hardcoded por enquanto)
+        if ("DF2".equalsIgnoreCase(produto)) {
+            service.salvar(CsvModelType.BOLETIM_CTL1, baseDir, produto, "Boletim_ctl1");
+            service.salvar(CsvModelType.BOLETIM_CTL2, baseDir, produto, "Boletim_ctl2");
+        }
+    }
+
+// Loop para todos
+    private void processarTodos() {
+        // Pega lista de itens na Thread da UI para evitar conflito
+        final int count = box_produto.getItemCount();
+        for (int i = 0; i < count; i++) {
+            String item = box_produto.getItemAt(i);
+
+            // Ignora itens de controle
+            if (item == null || item.isBlank() || item.equals("OUTRO") || item.equals("TODOS") || item.equals("Erro ao carregar")) {
                 continue;
             }
 
             try {
-                CsvModelService service = new CsvModelService(api);
-                String baseDir = "/Produtos/" + produto;
-
-                // Fecha a tabela se estiver aberta com este produto
-                if (principal.tabela != null) {
-                    String objeto = principal.lbl_arquivo_aberto.getText()
-                            .split("-")[0]
-                            .trim();
-
-                    if (objeto.equals(produto)) {
-                        try {
-                            principal.tabela.dispose();
-                            principal.clear_desktop();
-                        } finally {
-                            principal.tabela = null;
-                        }
-                    }
-                }
-
-                // Arquivos padrão
-                service.salvar(CsvModelType.PRELIMINAR, baseDir, produto, "Prelim");
-                service.salvar(CsvModelType.FINAL, baseDir, produto, "Final");
-
-                // Arquivos extras do DF2
-                if (produto.equals("DF2")) {
-                    service.salvar(CsvModelType.BOLETIM_CTL1, baseDir, produto, "Boletim_ctl1");
-                    service.salvar(CsvModelType.BOLETIM_CTL2, baseDir, produto, "Boletim_ctl2");
-                }
-
-                System.out.println("✔ Produto restaurado: " + produto);
-
+                processarProduto(item.trim());
             } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(this,
-                        "Erro ao restaurar o produto " + produto + ": " + e.getMessage(),
-                        "Erro", JOptionPane.ERROR_MESSAGE);
+                System.err.println("Falha ao processar " + item + ": " + e.getMessage());
+                // Não para o loop, tenta o próximo
             }
         }
-
-        JOptionPane.showMessageDialog(this,
-                "Todos os produtos foram verificados/restaurados.",
-                "Concluído", JOptionPane.INFORMATION_MESSAGE);
     }
-
-    void criar_produto(String produto) {
-        try {
-            CsvModelService service = new CsvModelService(api);
-            String baseDir = "/Produtos/" + produto;
-
-            // arquivos padrão
-            service.salvar(CsvModelType.PRELIMINAR, baseDir, produto, "Prelim");
-            service.salvar(CsvModelType.FINAL, baseDir, produto, "Final");
-
-            JOptionPane.showMessageDialog(this,
-                    "Arquivos de " + produto + " Criado no Servidor/App.",
-                    "OK", JOptionPane.INFORMATION_MESSAGE);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this,
-                    "Erro ao criar no servidor: " + e.getMessage(),
-                    "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> box_produto;

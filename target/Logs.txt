@@ -1,0 +1,1 @@
+[2025-11-29T15:02:39.580363700] Atenção em: Servidor não encontrado: null

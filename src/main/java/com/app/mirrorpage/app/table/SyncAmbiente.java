@@ -8,10 +8,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Z D K
- */
 public class SyncAmbiente {
 
     private final jInternal_tabela tabela;
@@ -30,9 +26,36 @@ public class SyncAmbiente {
             // 2. envia para o servidor
             api.saveCell(sheetPath, row, col, value);
 
+        } catch (ApiClient.ApiHttpException e) {
+            // Tratamento específico para erros HTTP da API
+            if (e.isNotFound()) {
+                // Erro 404
+                SwingUtilities.invokeLater(() -> {
+                    JOptionPane.showMessageDialog(tabela,
+                            "ERRO CRÍTICO:\nO arquivo não foi encontrado no servidor.\n"
+                            + "Ele pode ter sido excluído ou movido.",
+                            "Falha ao Salvar",
+                            JOptionPane.ERROR_MESSAGE);
+                });
+            } else {
+                // Outros erros (500, 403, etc)
+                e.printStackTrace();
+                SwingUtilities.invokeLater(() -> {
+                    JOptionPane.showMessageDialog(tabela,
+                            "Erro ao salvar: " + e.getMessage(),
+                            "Erro de Servidor",
+                            JOptionPane.WARNING_MESSAGE);
+                });
+            }
         } catch (Exception ex) {
+            // Erros genéricos de conexão ou lógica
             ex.printStackTrace();
-            // TODO: tratar erro, exibir mensagem etc.
+            SwingUtilities.invokeLater(() -> {
+                JOptionPane.showMessageDialog(tabela,
+                        "Erro inesperado: " + ex.getMessage(),
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE);
+            });
         }
     }
 

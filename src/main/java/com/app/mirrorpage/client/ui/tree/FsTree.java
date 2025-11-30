@@ -451,6 +451,7 @@ public class FsTree extends JPanel {
         int pos = insertionIndexByName(parentNode, dto.name);
         model.insertNodeInto(node, parentNode, pos);
         index.put(path, node);
+        reloadDirSafe(path);
     }
 
     private void onUpdate(DefaultTreeModel model, String path) {

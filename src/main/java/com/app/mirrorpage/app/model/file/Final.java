@@ -3,10 +3,6 @@ package com.app.mirrorpage.app.model.file;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Z D K
- */
 public class Final implements CsvModel {
 
     String[] colunas = {"PG", "EDICAO", "TIPO", "SUBTIPO", "ORI", "RETRANCA", "REP", "LOC", "tCab", "tVT", "tMat", "MODI", "APV", "TEMPO", "ASSUNTO"};

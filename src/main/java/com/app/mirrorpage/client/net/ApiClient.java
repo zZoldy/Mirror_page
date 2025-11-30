@@ -13,6 +13,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -64,10 +65,6 @@ public class ApiClient {
 
     private final String baseUrl;   // sempre sem barra final e com esquema
 
-    /**
-     * Sempre guardar aqui apenas o token "cru", sem o prefixo "Bearer ". O
-     * prefixo é adicionado somente em addAuth().
-     */
     private volatile String bearer; // [CHG] interpretado como token cru (sem "Bearer ")
 
     // fornecedores/callback para refresh automático
@@ -158,14 +155,6 @@ public class ApiClient {
         ensure2xx(resp, url);
 
         return resp.body(); // CSV inteiro
-    }
-
-    public ChangeBatchDto getTreeChanges(long since) throws IOException, InterruptedException {
-        String url = baseUrl + "/api/tree/changes?since=" + since;
-        HttpRequest.Builder b = baseRequest(url).GET();
-        HttpResponse<String> resp = sendWithAutoRefresh(b, HttpResponse.BodyHandlers.ofString());
-        ensure2xx(resp, url);
-        return mapper.readValue(resp.body(), ChangeBatchDto.class);
     }
 
     public void postVoid(String endpoint) throws Exception {
@@ -401,12 +390,6 @@ public class ApiClient {
         }
     }
 
-    /**
-     * Tenta aplicar LOCK numa célula.
-     *
-     * @return true se o lock foi concedido, false se já está bloqueada por
-     * outro usuário.
-     */
     public ApiClient.LockResult tryLockCell(String docPath, int row, int col)
             throws IOException, InterruptedException {
 
@@ -469,9 +452,6 @@ public class ApiClient {
         return new LockResult(false, null);
     }
 
-    /**
-     * Apenas libera o lock da célula, sem salvar (caso ESC / cancelar edição).
-     */
     public void unlockCell(String docPath, int row, int col) throws IOException, InterruptedException {
         String norm = normalizePath(docPath);
         if (!norm.startsWith("/")) {
@@ -568,7 +548,8 @@ public class ApiClient {
 
         String json = mapper.writeValueAsString(Map.of(
                 "path", norm,
-                "row", row
+                "row", row,
+                "user", username
         ));
 
         HttpRequest.Builder b = HttpRequest.newBuilder(URI.create(url))
@@ -613,6 +594,27 @@ public class ApiClient {
                 = sendWithAutoRefresh(b, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
 
         ensure2xx(resp, url);
+    }
+
+    public List<String> getPastas() {
+        try {
+            // 1. Reutiliza seu método 'get' que já existe e trata auth/client
+            String json = get("/api/sheet/pastas");
+
+            if (json == null || json.isBlank()) {
+                return Collections.emptyList();
+            }
+
+            // 2. Converte o JSON String para List<String>
+            // Se a variável 'mapper' não for acessível, use: new ObjectMapper()
+            return mapper.readValue(json, new TypeReference<List<String>>() {
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("[API] Erro ao buscar pastas: " + e.getMessage());
+            return Collections.emptyList();
+        }
     }
 
     public String loadSheet(String path) throws IOException, InterruptedException {

@@ -8,16 +8,18 @@ import com.app.mirrorpage.app.model.Image_panel;
 import com.app.mirrorpage.app.model.Tabela;
 import com.app.mirrorpage.app.tema.TemaSyncClient;
 import com.app.mirrorpage.client.net.ApiClient;
-import com.app.mirrorpage.client.tree.TreeChangeMonitor;
+import com.app.mirrorpage.client.net.AppSocketClient;
 import com.app.mirrorpage.client.ui.tree.FsTree;
 import com.app.mirrorpage.ui.config.Configuracoes;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.net.URI;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.Collections;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -36,7 +38,6 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
 
     private final Session session;
     private FsTree fsTree;
-    private TreeChangeMonitor treeMonitor;
     private ApiClient api;
 
     ImageIcon icon = new ImageIcon(getClass().getResource("/icons/logo.png"));
@@ -45,6 +46,7 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
     private final JPanel glass = new JPanel(new java.awt.GridBagLayout());
     private volatile boolean offlineShown = false;
     TemaSyncClient temaSync;
+    private AppSocketClient appSocket;
 
     Debug d = new Debug(this);
 
@@ -92,9 +94,8 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         });
 
         pn_tree.add(fsTree, BorderLayout.CENTER);
-
-        treeMonitor = new TreeChangeMonitor(api, fsTree, 2);
-        treeMonitor.start();
+        
+        iniciarWebSocket();
 
         final java.util.concurrent.atomic.AtomicInteger fails = new java.util.concurrent.atomic.AtomicInteger(0);
 
@@ -119,6 +120,28 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         System.out.println("Session: " + session.baseUrl());
 
         System.out.println("Painel: " + pn_logo.isVisible());
+    }
+
+    // [INSERIR NOVO MÉTODO NA CLASSE Principal]
+    private void iniciarWebSocket() {
+        try {
+            // Converte http -> ws (ex: http://localhost:8080 -> ws://localhost:8080/ws)
+            String url = session.baseUrl().replace("http", "ws") + "/ws";
+            URI uri = new URI(url);
+
+            appSocket = new AppSocketClient(uri, evento -> {
+                // Quando receber evento do servidor, aplica na árvore
+                SwingUtilities.invokeLater(() -> {
+                    fsTree.applyEvents(Collections.singletonList(evento));
+                });
+            });
+
+            appSocket.connect(); // Inicia conexão em thread separada
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.registrarErro("Erro ao iniciar WebSocket", e);
+        }
     }
 
     public void paint_tema() {
@@ -167,9 +190,9 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
     @Override
     public void stts_jornal() {
         SwingUtilities.invokeLater(() -> {
-            
+
             String tempo_saida = Funcoes.soma_tempo(out_entrada_jornal.getText(), out_tempo_producao.getText());
-            
+
             LocalTime encerramento = LocalTime.parse(out_encerramento.getText());
             LocalTime saida = LocalTime.parse(tempo_saida);
 
@@ -210,9 +233,8 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         });
 
     }
-    
 
-    public void clear_desktop() {
+    public static void clear_desktop() {
         pn_desktop.setVisible(false);
         pn_desktop.setBorder(new EmptyBorder(0, 0, 0, 0));
     }
@@ -492,6 +514,10 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         session.setAccessToken(newToken);
     }
 
+    public void reload_tree(String dir) {
+        fsTree.reloadDir(dir);
+    }
+
     public void logout() {
         int op = JOptionPane.showConfirmDialog(
                 this,
@@ -508,7 +534,7 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         try {
             // Limpa tokens e sessão local
             session.setAccessToken(null);
-            
+
             // Fecha a tela principal
             this.dispose();
 
@@ -1007,11 +1033,9 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        if (treeMonitor != null) {
-            treeMonitor.stop();
+        if (appSocket != null) {
+            appSocket.close();
         }
-
-
     }//GEN-LAST:event_formWindowClosing
 
     private void control_pn_lateralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_control_pn_lateralMouseClicked
@@ -1159,7 +1183,7 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
     private javax.swing.JPanel pn_alto;
     private javax.swing.JPanel pn_background;
     private javax.swing.JPanel pn_baixo;
-    private javax.swing.JPanel pn_desktop;
+    public static javax.swing.JPanel pn_desktop;
     private javax.swing.JPanel pn_inferior;
     private javax.swing.JPanel pn_lateral;
     private javax.swing.JPanel pn_logo;

@@ -11,6 +11,7 @@ import com.app.mirrorpage.client.dto.RowInsertedEvent;
 import com.app.mirrorpage.client.dto.RowMoveEvent;
 import com.app.mirrorpage.client.net.ApiClient;
 import com.app.mirrorpage.client.net.SheetSocketClient;
+import com.app.mirrorpage.client.ui.tree.FsTree;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
@@ -728,17 +729,21 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
             wsClient = new SheetSocketClient(
                     new URI(wsUrl),
                     topic,
+                    usuarioLogado,
                     this::onCellChangeEvent,
                     this::onRowInsertedEvent,
                     this::onRowMovedEvent,
-                    this::onDeletedEvent
+                    this::onDeletedEvent,
+                    (msg) -> {
+                        Log.registrarErro_noEx("ERRO NO SHEET SOCKET CLIENTE MSG");
+                    }
             );
 
-            wsClient.connect(); // assíncrono
+            wsClient.connect();
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("[WS] Falha ao conectar: " + e.getMessage());
+            System.exit(0); // Se der erro ao iniciar, mata também
         }
     }
 

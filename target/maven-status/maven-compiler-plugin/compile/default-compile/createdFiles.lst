@@ -71,6 +71,7 @@ com\app\mirrorpage\ui\Principal$4.class
 com\app\mirrorpage\client\ui\tree\FsTree$2.class
 com\app\mirrorpage\ui\jInternal_tabela$7.class
 com\app\mirrorpage\client\tree\CustomTreeRenderer$1.class
+com\app\mirrorpage\ui\config\RestaurarProduto$3.class
 com\app\mirrorpage\app\model\file\Prelim.class
 com\app\mirrorpage\app\dto\auth\LoginRequest.class
 com\app\mirrorpage\ui\jInternal_console.class
@@ -80,6 +81,7 @@ com\app\mirrorpage\client\net\ApiClient$LockConflictResponse.class
 com\app\mirrorpage\client\ui\tree\FsTree$ChangeEvent.class
 com\app\mirrorpage\ui\jInternal_tabela$1.class
 com\app\mirrorpage\app\model\file\Final.class
+com\app\mirrorpage\client\net\ApiClient$3.class
 com\app\mirrorpage\client\ui\tree\FsTree$3$1.class
 com\app\mirrorpage\client\ui\tree\FsTree.class
 com\app\mirrorpage\ui\Principal$14.class
@@ -92,6 +94,7 @@ com\app\mirrorpage\ui\jInternal_tabela$5.class
 com\app\mirrorpage\ui\Debug$1.class
 com\app\mirrorpage\ui\Principal$6.class
 com\app\mirrorpage\client\dto\ValorDto.class
+com\app\mirrorpage\client\net\AppSocketClient.class
 com\app\mirrorpage\ui\config\PageCreateFile.class
 com\app\mirrorpage\ui\Principal$12.class
 com\app\mirrorpage\ui\jInternal_tabela.class
@@ -99,7 +102,6 @@ com\app\mirrorpage\app\tema\ErroCellRenderer.class
 com\app\mirrorpage\ui\Principal$18.class
 com\app\mirrorpage\app\model\file\CsvModel.class
 com\app\mirrorpage\app\model\TimeCellEditor.class
-com\app\mirrorpage\client\tree\TreeChangeMonitor.class
 com\app\mirrorpage\app\tema\TemaSyncClient.class
 com\app\mirrorpage\ui\jInternal_console$Level.class
 com\app\mirrorpage\app\framework\Funcoes$2.class
