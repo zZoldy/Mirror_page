@@ -1,5 +1,6 @@
 package com.app.mirrorpage.ui;
 
+import com.app.mirrorpage.ui.table.jInternal_tabela;
 import com.app.mirrorpage.app.framework.Funcoes;
 import com.app.mirrorpage.app.framework.Log;
 import com.app.mirrorpage.app.framework.Session;
@@ -94,7 +95,7 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         });
 
         pn_tree.add(fsTree, BorderLayout.CENTER);
-        
+
         iniciarWebSocket();
 
         final java.util.concurrent.atomic.AtomicInteger fails = new java.util.concurrent.atomic.AtomicInteger(0);
@@ -117,9 +118,6 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
                 }
             }
         }, 0, 3000);
-        System.out.println("Session: " + session.baseUrl());
-
-        System.out.println("Painel: " + pn_logo.isVisible());
     }
 
     // [INSERIR NOVO MÉTODO NA CLASSE Principal]
@@ -145,7 +143,7 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
     }
 
     public void paint_tema() {
-        temaSync.aplicarTemaDoServidorNoLogin(this);
+        temaSync.aplicarTemaDoServidor(this);
     }
 
     // Listeners
@@ -273,7 +271,7 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
                     }
 
                     // 4) Cria o novo jInternal_tabela com o MODEL pronto
-                    tabela = new jInternal_tabela(model, api, this, nomeArquivoRelativo, session.username());
+                    tabela = new jInternal_tabela(model, api, this, nomeArquivoRelativo, session.username(), temaSync);
                     try {
                         tabela.jScrollPane1.setBorder(new EmptyBorder(0, 0, 0, 0));
                         tabela.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -514,10 +512,6 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         session.setAccessToken(newToken);
     }
 
-    public void reload_tree(String dir) {
-        fsTree.reloadDir(dir);
-    }
-
     public void logout() {
         int op = JOptionPane.showConfirmDialog(
                 this,
@@ -576,7 +570,6 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         lbl_arquivo_aberto = new javax.swing.JLabel();
         lbl_fechar_arquivo = new javax.swing.JLabel();
         lbl_show_user = new javax.swing.JLabel();
-        Desktop = new javax.swing.JDesktopPane();
         pn_inferior = new javax.swing.JPanel();
         pn_baixo = new javax.swing.JPanel();
         horario_atual = new javax.swing.JLabel();
@@ -589,6 +582,7 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         out_tempo_producao = new javax.swing.JLabel();
         out_encerramento = new javax.swing.JLabel();
         lbl_encerramento = new javax.swing.JLabel();
+        Desktop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         mn_config = new javax.swing.JMenu();
         item_opcoes = new javax.swing.JMenuItem();
@@ -741,24 +735,6 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
             .addComponent(lbl_show_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        Desktop.setName("Desktop"); // NOI18N
-        Desktop.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentResized(java.awt.event.ComponentEvent evt) {
-                DesktopComponentResized(evt);
-            }
-        });
-
-        javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
-        Desktop.setLayout(DesktopLayout);
-        DesktopLayout.setHorizontalGroup(
-            DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        DesktopLayout.setVerticalGroup(
-            DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 556, Short.MAX_VALUE)
-        );
-
         pn_inferior.setBackground(new java.awt.Color(50, 50, 50));
         pn_inferior.setName("pn_inferior"); // NOI18N
 
@@ -792,13 +768,9 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         );
         pn_baixoLayout.setVerticalGroup(
             pn_baixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_baixoLayout.createSequentialGroup()
-                .addGroup(pn_baixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pn_baixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lbl_status_jornal, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                        .addComponent(out_status_jornal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(horario_atual, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 5, Short.MAX_VALUE))
+            .addComponent(out_status_jornal, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addComponent(lbl_status_jornal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(horario_atual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pn_alto.setName("pn_alto"); // NOI18N
@@ -840,11 +812,11 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
                 .addComponent(lbl_entrada_jornal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(out_entrada_jornal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
                 .addComponent(lbl_producao, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(out_tempo_producao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
                 .addComponent(lbl_encerramento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(out_encerramento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -878,13 +850,31 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
                 .addComponent(pn_baixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        Desktop.setName("Desktop"); // NOI18N
+        Desktop.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                DesktopComponentResized(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
+        Desktop.setLayout(DesktopLayout);
+        DesktopLayout.setHorizontalGroup(
+            DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        DesktopLayout.setVerticalGroup(
+            DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout pn_desktopLayout = new javax.swing.GroupLayout(pn_desktop);
         pn_desktop.setLayout(pn_desktopLayout);
         pn_desktopLayout.setHorizontalGroup(
             pn_desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pn_inferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pn_superior_desktop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Desktop, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(Desktop)
         );
         pn_desktopLayout.setVerticalGroup(
             pn_desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1067,14 +1057,6 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         }
     }//GEN-LAST:event_pn_logoComponentResized
 
-    private void DesktopComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_DesktopComponentResized
-        // TODO add your handling code here:
-        if (pn_desktop.isVisible()) {
-            tabela.setSize(Desktop.getSize());
-        }
-
-    }//GEN-LAST:event_DesktopComponentResized
-
     private void lbl_fechar_arquivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_fechar_arquivoMouseClicked
         // TODO add your handling code here:
         try {
@@ -1153,6 +1135,13 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         // TODO add your handling code here:
         refresh_collumn();
     }//GEN-LAST:event_item_colunaActionPerformed
+
+    private void DesktopComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_DesktopComponentResized
+        // TODO add your handling code here:
+        if (pn_desktop.isVisible()) {
+            tabela.setSize(Desktop.getSize());
+        }
+    }//GEN-LAST:event_DesktopComponentResized
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Desktop;

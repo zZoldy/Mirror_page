@@ -13,7 +13,7 @@ public class TemaSyncClient {
         this.api = api;
     }
 
-    public void aplicarTemaDoServidorNoLogin(JFrame root) {
+    public void aplicarTemaDoServidor(JFrame root) {
         try {
             System.out.println("[TemaSync] Buscando tema no servidor...");
 
@@ -48,6 +48,19 @@ public class TemaSyncClient {
     public void aplicarTemaTable(JTable table) {
         TemaNome nome = ThemeManager.get().temaAtual();
         ThemeApplier.apply_table(table, nome);
+    }
+
+    public void aplicarTemaRoot(JFrame root) {
+        TemaNome nome = ThemeManager.get().temaAtual();
+        ThemeApplier.apply(root, nome);
+    }
+
+    public void aplicarTemaGeral(JFrame root, JTable table) {
+        aplicarTemaRoot(root);
+        if (table != null) {
+            aplicarTemaTable(table);
+        }
+
     }
 
     public void onTrocaTema(String novoValor, JFrame root) {

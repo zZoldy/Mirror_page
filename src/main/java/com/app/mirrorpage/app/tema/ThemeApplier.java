@@ -1,4 +1,3 @@
-
 package com.app.mirrorpage.app.tema;
 
 import com.app.mirrorpage.app.model.Tabela;
@@ -57,7 +56,7 @@ public class ThemeApplier {
         root.revalidate();
         root.repaint();
     }
-
+    
     public static void apply_table(JTable table, TemaNome tema) {
         switch (tema) {
             case DEFAULT ->
@@ -281,7 +280,42 @@ public class ThemeApplier {
                 c.setBackground(back);
                 c.setForeground(fore);
                 c.setFont(font_horario);
+                break;
 
+            case "splitPane_lauda":
+                c.setBackground(back);
+                c.setForeground(fore);
+                c.setFont(font_horario);
+                break;
+
+            case "pn_superior_lauda":
+                c.setBackground(back);
+                c.setForeground(fore);
+                c.setFont(font_horario);
+                break;
+
+            case "pn_lauda":
+                c.setBackground(back);
+                c.setForeground(fore);
+                c.setFont(font_horario);
+                break;
+
+            case "txt_lauda":
+                c.setBackground(back);
+                c.setForeground(fore);
+                c.setFont(font_horario);
+                break;
+
+            case "lauda_titulo":
+                c.setBackground(back);
+                c.setForeground(fore);
+                c.setFont(font_horario);
+                break;
+
+            case "lauda_info":
+                c.setBackground(back);
+                c.setForeground(fore);
+                c.setFont(font_horario);
                 break;
 
             // etc… aqui você trata pn_tree, pn_superior_desktop, pn_inferior, pn_baixo, horario_atual, etc.

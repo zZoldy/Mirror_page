@@ -3,7 +3,7 @@ package com.app.mirrorpage.app.table;
 import com.app.mirrorpage.app.model.Tabela;
 import com.app.mirrorpage.app.tema.ThemeApplier;
 import com.app.mirrorpage.client.net.ApiClient;
-import com.app.mirrorpage.ui.jInternal_tabela;
+import com.app.mirrorpage.ui.table.jInternal_tabela;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;

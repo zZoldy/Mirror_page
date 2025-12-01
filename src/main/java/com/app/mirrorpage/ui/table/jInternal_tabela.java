@@ -1,17 +1,19 @@
-package com.app.mirrorpage.ui;
+package com.app.mirrorpage.ui.table;
 
 import com.app.mirrorpage.app.framework.Funcoes;
 import com.app.mirrorpage.app.framework.Log;
 import com.app.mirrorpage.app.listener.Cliente_listener;
 import com.app.mirrorpage.app.model.Tabela;
 import com.app.mirrorpage.app.table.SyncAmbiente;
+import com.app.mirrorpage.app.tema.TemaSyncClient;
 import com.app.mirrorpage.client.dto.CellChangeEvent;
 import com.app.mirrorpage.client.dto.RowDeletedEvent;
 import com.app.mirrorpage.client.dto.RowInsertedEvent;
 import com.app.mirrorpage.client.dto.RowMoveEvent;
 import com.app.mirrorpage.client.net.ApiClient;
 import com.app.mirrorpage.client.net.SheetSocketClient;
-import com.app.mirrorpage.client.ui.tree.FsTree;
+import com.app.mirrorpage.ui.Principal;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
@@ -23,6 +25,7 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
@@ -51,19 +54,28 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
 
     public String usuarioLogado;
 
-    String csv_server;
+    public String csv_server;
+
+    TemaSyncClient temaSync;
+
+    private JSplitPane splitPane;
+    private Lauda laudaPanel;
+    private boolean laudaVisivel = false;
 
     AtomicBoolean acao_line = new AtomicBoolean(true);
 
-    public jInternal_tabela(DefaultTableModel model, ApiClient api, Cliente_listener listener, String csv_server, String usuarioLogado) {
+    public jInternal_tabela(DefaultTableModel model, ApiClient api, Cliente_listener listener, String csv_server, String usuarioLogado, TemaSyncClient temaSync) {
         this.api = api;
         this.csv_server = csv_server;
         this.listener = listener;
         this.usuarioLogado = usuarioLogado;
+        this.temaSync = temaSync;
 
         initComponents();
 
         this.sync = new SyncAmbiente(this, api, csv_server);
+
+        initLaudaSystem();
 
         tabela_news.setModel(model);
         tabela_news.setName("news");
@@ -88,6 +100,7 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pn_tabela = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela_news = new javax.swing.JTable();
 
@@ -117,6 +130,7 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
         });
 
         jScrollPane1.setBorder(null);
+        jScrollPane1.setName("pn_tabela"); // NOI18N
 
         tabela_news.setFont(new java.awt.Font("Globotipo Corporativa Textos", 1, 14)); // NOI18N
         tabela_news.setModel(new javax.swing.table.DefaultTableModel(
@@ -141,17 +155,26 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabela_news);
 
+        javax.swing.GroupLayout pn_tabelaLayout = new javax.swing.GroupLayout(pn_tabela);
+        pn_tabela.setLayout(pn_tabelaLayout);
+        pn_tabelaLayout.setHorizontalGroup(
+            pn_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+        );
+        pn_tabelaLayout.setVerticalGroup(
+            pn_tabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+            .addComponent(pn_tabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(pn_tabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -318,6 +341,27 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
             oldCellValue = tabela_news.getModel().getValueAt(modelRow, modelCol);
             oldCellRow = viewRowEditing;  // guardando em coordenada de VIEW
             oldCellCol = viewColEditing;
+        }
+
+        if (evt.isAltDown() && evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+            int row = tabela_news.getSelectedRow();
+            if (row != -1) {
+                evt.consume(); // Impede que o evento faça outra coisa
+
+                // Pega algum dado da linha para mostrar no título (ex: coluna 1 ou 2)
+                // Ajuste o índice '1' para a coluna que tem o nome da matéria/slug
+                String assunto = tabela_news.getValueAt(row, 5).toString();
+                String titulo = "LINHA " + (row + 1) + " - " + assunto;
+
+                // Chama o Principal
+                alternarLauda(titulo);
+            }
+        }
+
+        if (evt.isAltDown() && evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            evt.consume();
+            // Chama o Principal para fechar
+            esconderLauda();
         }
     }//GEN-LAST:event_tabela_newsKeyPressed
 
@@ -1043,9 +1087,122 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
         });
     }
 
+    private void initLaudaSystem() {
+        // 1. Inicializa o painel da lauda
+        laudaPanel = new Lauda();
+
+        laudaPanel.txtTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                // Verifica se apertou ALT + SETA ESQUERDA
+                if (e.isAltDown() && e.getKeyCode() == java.awt.event.KeyEvent.VK_LEFT) {
+                    e.consume(); // Impede que o evento digite algo ou faça outra ação padrão
+
+                    // Chama o Principal para fechar a gaveta
+                    esconderLauda();
+
+                }
+            }
+        });
+
+        // 2. Configura o SplitPane (Divisor)
+        splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+        splitPane.setResizeWeight(0.5); // 50% da tela para cada ao abrir
+        splitPane.setOneTouchExpandable(true);
+
+        // 3. Truque para capturar a tabela que já existe no NetBeans
+        // Assumindo que você adiciona o jInternal_tabela no pn_desktop
+        // Vamos limpar o pn_desktop e usar o splitPane
+    }
+
+    // Este método será chamado pela Tabela quando apertar ALT+SETA
+    public void alternarLauda(String tituloDaLinha) {
+        if (!laudaVisivel) {
+            mostrarLauda(tituloDaLinha);
+        } else {
+            // Se já estiver aberta, apenas foca no texto ou fecha? 
+            // Por enquanto, vamos fechar para testar o abrir/fechar
+            esconderLauda();
+        }
+    }
+
+    public void mostrarLauda(String titulo) {
+        // 1. Limpa o container original (pn_tabela)
+        pn_tabela.removeAll();
+
+        // Define BorderLayout para que o SplitPane ocupe todo o espaço
+        pn_tabela.setLayout(new BorderLayout());
+
+        // 2. Configura o SplitPane
+        // TOP: O seu JDesktopPane original (variável 'Desktop')
+        splitPane.setTopComponent(jScrollPane1);
+        // BOTTOM: O painel da Lauda
+        splitPane.setBottomComponent(laudaPanel);
+
+        splitPane.setName("splitPane_lauda");
+
+        // 3. Adiciona o SplitPane ao pn_tabela
+        pn_tabela.add(splitPane, BorderLayout.CENTER);
+
+        // 4. Configurações visuais
+        laudaPanel.abrirLauda(titulo, ""); // Prepara o texto
+
+        laudaVisivel = true;
+
+        // 5. Atualiza a tela
+        pn_tabela.revalidate();
+        pn_tabela.repaint();
+
+        Principal root = getPrincipal();
+
+        try {
+            temaSync.aplicarTemaGeral(root, tabela_news);
+        } catch(Exception e){
+            Log.registrarErro("[mostrarLauda] Aplicar Tema Geral - ", e);
+        }
+
+        // Opcional: Ajustar o foco para o editor
+        SwingUtilities.invokeLater(() -> {
+            laudaPanel.txtTexto.requestFocusInWindow();
+            splitPane.setDividerLocation(0.5); // Divide 50/50
+        });
+    }
+
+    public void esconderLauda() {
+        // 1. Remove o SplitPane
+        pn_tabela.removeAll();
+        pn_tabela.setLayout(new BorderLayout()); // Garante o layout
+
+        // 2. Devolve o Desktop Pane para o pn_tabela (como era no início)
+        pn_tabela.add(jScrollPane1, BorderLayout.CENTER);
+
+        laudaVisivel = false;
+
+        // 3. Atualiza a tela
+        pn_tabela.revalidate();
+        pn_tabela.repaint();
+
+        Principal root = getPrincipal();
+
+//        temaSync.aplicarTemaGeral(root, tabela_news);
+        // 4. Devolve o foco para a tabela
+        if (tabela_news != null) {
+            tabela_news.requestFocusInWindow();
+        }
+
+    }
+
+    public Principal getPrincipal() {
+        if (this.listener instanceof Principal) {
+            return (Principal) this.listener;
+        }
+        return null;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel pn_tabela;
     public javax.swing.JTable tabela_news;
     // End of variables declaration//GEN-END:variables
 
