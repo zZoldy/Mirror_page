@@ -316,6 +316,10 @@ public class FsTree extends JPanel {
         public boolean dir;
     }
 
+    public void applyEvent(ChangeEvent evt) {
+        applyEvents(java.util.Collections.singletonList(evt));
+    }
+
     public void applyEvents(List<ChangeEvent> events) {
         if (events == null || events.isEmpty()) {
             return;

@@ -69,10 +69,6 @@ public class SyncAmbiente {
             String csv = api.loadSheet(sheetPath);
             SwingUtilities.invokeLater(() -> {
                 aplicarCsvNoModelo(csv);
-
-                int viewRow = tabela.tabela_news.convertRowIndexToView(afterRow);
-                int viewCol = tabela.tabela_news.convertColumnIndexToView(col);
-                tabela.selecao_line(viewRow, viewCol);
             });
 
         } catch (Exception ex) {
@@ -161,9 +157,6 @@ public class SyncAmbiente {
 
             SwingUtilities.invokeLater(() -> {
                 aplicarCsvNoModelo(csv);
-                int viewRow = tabela.tabela_news.convertRowIndexToView(row);
-                int viewCol = tabela.tabela_news.convertColumnIndexToView(col);
-                tabela.selecao_line(viewRow, viewCol);
             });
 
         } catch (Exception e) {

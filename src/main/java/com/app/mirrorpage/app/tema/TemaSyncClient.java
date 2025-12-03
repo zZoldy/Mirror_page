@@ -2,7 +2,9 @@ package com.app.mirrorpage.app.tema;
 
 import com.app.mirrorpage.client.dto.ValorDto;
 import com.app.mirrorpage.client.net.ApiClient;
+import com.app.mirrorpage.ui.Principal;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 
 public class TemaSyncClient {
@@ -55,6 +57,11 @@ public class TemaSyncClient {
         ThemeApplier.apply(root, nome);
     }
 
+    public void aplicarTemaCronometro(JLabel start, JLabel stop, JLabel cronometro, boolean run) {
+        TemaNome nome = ThemeManager.get().temaAtual();
+        ThemeApplier.applyCronometro(start, stop, cronometro, nome, run);
+    }
+
     public void aplicarTemaGeral(JFrame root, JTable table) {
         aplicarTemaRoot(root);
         if (table != null) {
@@ -63,11 +70,13 @@ public class TemaSyncClient {
 
     }
 
-    public void onTrocaTema(String novoValor, JFrame root) {
+    public void onTrocaTema(String novoValor, Principal principal) {
         // 1) aplica local imediatamente
         TemaNome nome = mapear(novoValor);
         ThemeManager.get().setTema(nome);
-        ThemeApplier.apply(root, nome);
+        ThemeApplier.apply(principal, nome);
+        System.out.println("BOOLEAN: " + principal.isRodando);
+        ThemeApplier.applyCronometro(principal.lbl_cronometro_start, principal.lbl_cronometro_stop, principal.lbl_cronometro, nome, principal.isRodando);
 
         new Thread(() -> {
             try {

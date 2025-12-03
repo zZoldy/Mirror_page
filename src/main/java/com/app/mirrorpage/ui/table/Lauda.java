@@ -5,7 +5,6 @@
 package com.app.mirrorpage.ui.table;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
 import java.text.BreakIterator;
@@ -15,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -23,6 +23,7 @@ public class Lauda extends JPanel {
     public JTextPane txtTexto;
     private JLabel lblInfo;
     private JLabel lblTitulo;
+    public JLabel lblUsuario;
     private final int WPM_BASE = 150; // Velocidade de leitura
 
     public Lauda() {
@@ -40,12 +41,20 @@ public class Lauda extends JPanel {
 
         lblTitulo = new JLabel("LINHA 00 - ASSUNTO");
         lblTitulo.setName("lauda_titulo");
+        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+
+        lblUsuario = new JLabel("Usuário - Editando");
+        lblUsuario.setName("lauda_usuario");
+        lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 
         lblInfo = new JLabel("0:00 • 0 palavras");
         lblInfo.setName("lauda_info");
 
-        topPanel.add(lblTitulo, BorderLayout.EAST);
         topPanel.add(lblInfo, BorderLayout.WEST);
+
+        topPanel.add(lblTitulo, BorderLayout.CENTER);
+
+        topPanel.add(lblUsuario, BorderLayout.EAST);
 
         // 2. Editor de Texto
         txtTexto = new JTextPane();
@@ -77,8 +86,9 @@ public class Lauda extends JPanel {
     }
 
     // Método para configurar a lauda ao abrir
-    public void abrirLauda(String titulo, String conteudoInicial) {
+    public void abrirLauda(String titulo, String conteudoInicial, String usuario) {
         lblTitulo.setText(titulo);
+        lblUsuario.setText(usuario + " - Editando");
         txtTexto.setText(conteudoInicial);
         txtTexto.setCaretPosition(txtTexto.getDocument().getLength()); // Cursor no final
         txtTexto.requestFocusInWindow(); // Foco para digitar

@@ -1,6 +1,9 @@
 package com.app.mirrorpage.app.tema;
 
 import com.app.mirrorpage.app.model.Tabela;
+import static com.app.mirrorpage.app.tema.TemaNome.DARK;
+import static com.app.mirrorpage.app.tema.TemaNome.DEFAULT;
+import static com.app.mirrorpage.app.tema.TemaNome.STAR_LIGHT;
 import com.app.mirrorpage.client.tree.CustomTreeRenderer;
 import java.awt.Color;
 import java.awt.Component;
@@ -27,6 +30,11 @@ public class ThemeApplier {
     public static Color COLOR_DEFAULT = new Color(180, 190, 200);
     public static Color COLOR_DEFAULT_BACKGROUND = new Color(210, 220, 230);
 
+    public static Color COLOR_CRONOMETRO_START = new Color(0, 150, 0);
+    public static Color COLOR_CRONOMETRO_PAUSE = new Color(230, 140, 0);
+    public static Color COLOR_CRONOMETRO_STOP = new Color(180, 0, 0);
+
+    public static Color COLOR_DEFAULT_HEADER_TABLE = new Color(255, 255, 255);
     public static Color COLOR_DEFAULT_LINE = new Color(210, 220, 230);
     public static Color COLOR_DEFAULT_LINE_SELECTED = new Color(210, 220, 230);
     public static Color COLOR_DEFAULT_LINE_BACK_SELECTED = new Color(210, 220, 230);
@@ -56,7 +64,7 @@ public class ThemeApplier {
         root.revalidate();
         root.repaint();
     }
-    
+
     public static void apply_table(JTable table, TemaNome tema) {
         switch (tema) {
             case DEFAULT ->
@@ -79,6 +87,69 @@ public class ThemeApplier {
         root.revalidate();
         root.repaint();
         tema = "default";
+    }
+
+    public static void applyCronometro(JLabel start, JLabel stop, JLabel cronometro, TemaNome nome, boolean run) {
+        switch (nome) {
+            case DEFAULT ->
+                cron_default(start, stop, cronometro, run);
+
+            case DARK ->
+                cron_dark(start, stop, cronometro, run);
+
+            case STAR_LIGHT ->
+                cron_dark(start, stop, cronometro, run);
+
+            default ->
+                cron_default(start, stop, cronometro, run);
+        }
+    }
+
+    static void cron_default(JLabel start, JLabel stop, JLabel cronometro, boolean run) {
+        start.setBackground(COLOR_DEFAULT);
+        if (start.getText().equals("START")) {
+            start.setForeground(COLOR_CRONOMETRO_START);
+            if (run) {
+                cronometro.setForeground(COLOR_CRONOMETRO_START);
+            } else {
+                cronometro.setForeground(COLOR_CRONOMETRO_PAUSE);
+            }
+        } else if (start.getText().equals("PAUSE")) {
+            start.setForeground(COLOR_CRONOMETRO_PAUSE);
+            if (run) {
+                cronometro.setForeground(COLOR_CRONOMETRO_START);
+            } else {
+                cronometro.setForeground(COLOR_CRONOMETRO_PAUSE);
+            }
+
+        }
+
+        stop.setBackground(COLOR_DEFAULT);
+        stop.setForeground(COLOR_CRONOMETRO_STOP);
+    }
+
+    static void cron_dark(JLabel start, JLabel stop, JLabel cronometro, boolean run) {
+        start.setBackground(COLOR_DARK);
+
+        if (start.getText().equals("START")) {
+            start.setForeground(COLOR_CRONOMETRO_START);
+            if (run) {
+                cronometro.setForeground(COLOR_CRONOMETRO_START);
+            } else {
+                cronometro.setForeground(COLOR_CRONOMETRO_PAUSE);
+            }
+
+        } else if (start.getText().equals("PAUSE")) {
+            start.setForeground(COLOR_CRONOMETRO_PAUSE);
+            if (run) {
+                cronometro.setForeground(COLOR_CRONOMETRO_START);
+            } else {
+                cronometro.setForeground(COLOR_CRONOMETRO_PAUSE);
+            }
+        }
+
+        stop.setBackground(COLOR_DARK);
+        stop.setForeground(COLOR_CRONOMETRO_STOP);
     }
 
     private static void aplicarDefaultRecursivo(Component c, Color back, Color fore, Color background, Color file, Color close_file, Font font_ree) {
@@ -262,13 +333,6 @@ public class ThemeApplier {
                 c.setBackground(back);
                 c.setForeground(fore);
                 c.setFont(font_desktop);
-
-                break;
-            case "lbl_status_jornal":
-                c.setBackground(back);
-                c.setForeground(fore);
-                c.setFont(font_desktop);
-
                 break;
             case "out_status_jornal":
                 c.setBackground(back);
@@ -280,6 +344,28 @@ public class ThemeApplier {
                 c.setBackground(back);
                 c.setForeground(fore);
                 c.setFont(font_horario);
+                break;
+
+            case "lbl_cronometro":
+                c.setBackground(back);
+                c.setForeground(fore);
+                c.setFont(font_horario);
+                break;
+            case "lbl_cronometro_start":
+                c.setBackground(back);
+                if (c instanceof JLabel label) {
+                    if (label.getText().equals("START")) {
+                        c.setForeground(COLOR_CRONOMETRO_START);
+                    } else if (label.getText().equals("PAUSE")) {
+                        c.setForeground(COLOR_CRONOMETRO_PAUSE);
+                    }
+                }
+                c.setFont(font_desktop);
+                break;
+            case "lbl_cronometro_stop":
+                c.setBackground(back);
+                c.setForeground(COLOR_CRONOMETRO_STOP);
+                c.setFont(font_desktop);
                 break;
 
             case "splitPane_lauda":
@@ -313,6 +399,12 @@ public class ThemeApplier {
                 break;
 
             case "lauda_info":
+                c.setBackground(back);
+                c.setForeground(fore);
+                c.setFont(font_horario);
+                break;
+
+            case "lauda_usuario":
                 c.setBackground(back);
                 c.setForeground(fore);
                 c.setFont(font_horario);
@@ -361,7 +453,7 @@ public class ThemeApplier {
 
         Tabela.renderer_header_table(table, font_desktop, Color.ORANGE, COLOR_DARK);
         Tabela.renderer_line_table(table, font_table, new Color(0, 0, 0), Color.ORANGE, new Color(0, 0, 0), Color.ORANGE, new Color(0, 0, 0, 0), Color.GREEN, new Color(0, 0, 0, 0), Color.GREEN);
-        tema = "star_ligth";
+        tema = "star_light";
     }
 
 }

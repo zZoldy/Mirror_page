@@ -140,8 +140,6 @@ public class PageTema extends javax.swing.JPanel {
                 return;
         }
 
-        System.out.println("Tema Novo: " + tema_novo);
-
         // manda a STRING normalizada pro sync
         temaSync.onTrocaTema(tema_novo, principal);
 

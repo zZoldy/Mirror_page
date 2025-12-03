@@ -10,7 +10,7 @@ public class Final implements CsvModel {
     private static List<String[]> linhas(String produto, String arquivo) {
         List<String[]> l = new ArrayList<>();
 
-        l.add(new String[]{"", "", "", "", "", produto + "  -  " + arquivo, "", "", "", "", "", "", "", "00:00:00", ""});
+        l.add(new String[]{"", "", "", "", "", "Entrada - " + produto, "", "", "", "", "", "", "", "00:00:00", ""});
         l.add(new String[]{"1", "", "", "", "", "", "", "", "00:00", "00:00", "00:00", "", "", "00:00:00", ""});
         l.add(new String[]{"2", "", "", "", "", "", "", "", "00:00", "00:00", "00:00", "", "", "00:00:00", ""});
         l.add(new String[]{"3", "", "", "", "", "", "", "", "00:00", "00:00", "00:00", "", "", "00:00:00", ""});

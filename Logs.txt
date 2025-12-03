@@ -1387,3 +1387,479 @@
 [2025-12-01T15:17:41.757229100] Atenção em: Entrada de usuário: admin
 [2025-12-01T15:18:50.023515500] Atenção em: Entrada de usuário: admin
 [2025-12-01T15:19:35.329138500] Atenção em: Entrada de usuário: admin
+[2025-12-01T15:46:16.711431700] Atenção em: Entrada de usuário: admin
+[2025-12-01T15:46:32.014445800] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:46:32.016442] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:46:35.101400300] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:46:35.102398500] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:46:40.484551400] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:46:40.486541800] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:46:50.611241400] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:46:50.613239500] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:46:56.257437800] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T15:46:56.259432400] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T15:46:59.830386300] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T15:46:59.831382400] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T15:47:03.822214700] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:47:03.824209100] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:49:25.292885500] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:49:25.293882500] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:49:28.156044500] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:49:28.158053] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:52:21.263465300] Atenção em: Entrada de usuário: admin
+[2025-12-01T15:52:31.293810400] Atenção em: Entrada de usuário: teste1
+[2025-12-01T15:53:27.982187300] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:53:27.983183400] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:53:34.289531] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:53:34.290529100] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:56:33.817046400] Atenção em: Entrada de usuário: admin
+[2025-12-01T15:56:49.321997100] Atenção em: Entrada de usuário: teste1
+[2025-12-01T15:57:07.870656100] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:57:07.871653400] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:57:14.284520700] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:57:14.285517400] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:57:19.535185400] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:57:19.536182200] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:57:25.690171800] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:57:25.692165700] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:57:34.048991] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:57:34.049989900] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:57:39.222057800] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:57:39.224052900] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:58:04.187959500] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T15:58:04.188956800] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T15:59:37.783805800] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:59:37.785802300] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:59:41.237642700] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:59:41.239637200] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:59:45.114554100] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:59:45.115550900] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:59:51.128475900] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:59:51.129471600] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T15:59:53.292597400] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T15:59:53.293594200] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T16:01:52.785051600] Atenção em: Entrada de usuário: admin
+[2025-12-01T16:02:43.606333400] Atenção em: Entrada de usuário: admin
+[2025-12-01T16:02:50.627916800] Atenção em: Entrada de usuário: teste1
+[2025-12-01T16:03:13.744360900] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T16:03:13.746355200] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T16:03:19.579488] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T16:03:19.581482300] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T16:03:27.606017600] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:03:27.608012100] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:03:30.995397200] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:03:30.996393300] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:03:35.987502300] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T16:03:35.989498300] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T16:03:37.328440100] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T16:03:37.330435300] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T16:03:46.210966600] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:03:46.211962100] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:03:54.416787900] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:03:54.418772500] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:04:13.499274300] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:04:13.500272700] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:04:19.961488900] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:04:19.962498500] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:04:30.660238] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:04:30.661235300] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:04:35.055440800] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:04:35.057434500] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:04:38.902467400] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:04:38.904458200] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:04:42.535667200] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:04:42.537661900] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:04:53.642545900] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T16:04:53.644539100] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T16:04:55.794510800] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T16:04:55.795506100] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T16:04:57.515164200] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T16:04:57.517158600] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T16:04:59.438966200] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T16:04:59.439963300] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T16:05:03.470837300] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:05:03.471834600] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:05:05.662311] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:05:05.663306900] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:05:08.691492600] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:05:08.692489300] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:05:14.889825600] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:05:14.890822] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:05:16.752783300] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T16:05:16.753780700] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T16:18:55.601567] Atenção em: Entrada de usuário: admin
+[2025-12-01T16:19:32.930149400] Atenção em: [DELETE] - Linha excluída
+[2025-12-01T16:19:32.933144100] Atenção em: [DELETE] - Linha não excluída
+[2025-12-01T16:26:51.711657500] Atenção em: Entrada de usuário: admin
+[2025-12-01T16:30:32.119568300] Atenção em: Entrada de usuário: admin
+[2025-12-01T16:30:52.878570100] Atenção em: Entrada de usuário: teste1
+[2025-12-01T16:31:38.313023600] Atenção em: ERRO NO SHEET SOCKET CLIENTE MSG
+[2025-12-01T16:31:38.313023600] Atenção em: ERRO NO SHEET SOCKET CLIENTE MSG
+[2025-12-01T16:31:42.407180600] Erro em: Servidor OFF -> ConnectException: null
+[2025-12-01T16:31:42.407180600] Erro em: Servidor OFF -> ConnectException: null
+[2025-12-01T16:32:54.440412400] Atenção em: Entrada de usuário: admin
+[2025-12-01T16:33:39.973178200] Atenção em: Entrada de usuário: teste1
+[2025-12-01T16:37:40.840971] Atenção em: Entrada de usuário: admin
+[2025-12-01T16:57:53.251779500] Atenção em: Entrada de usuário: admin
+[2025-12-01T16:58:08.822421300] Atenção em: Entrada de usuário: teste1
+[2025-12-01T17:00:20.550189300] Atenção em: Entrada de usuário: admin
+[2025-12-01T17:18:26.959391700] Atenção em: Entrada de usuário: admin
+[2025-12-01T17:22:30.736317200] Atenção em: Entrada de usuário: admin
+[2025-12-01T17:27:03.168292400] Atenção em: Entrada de usuário: admin
+[2025-12-01T17:27:08.899589600] Atenção em: Erro de Conexão (Lock falhou)
+[2025-12-01T17:30:29.066260800] Atenção em: Entrada de usuário: admin
+[2025-12-01T17:30:34.284811900] Atenção em: Erro de Conexão (Lock falhou)
+[2025-12-01T17:30:39.743165600] Atenção em: Erro de Conexão (Lock falhou)
+[2025-12-01T17:30:40.948073200] Atenção em: Erro de Conexão (Lock falhou)
+[2025-12-01T17:30:45.048488500] Atenção em: Erro de Conexão (Lock falhou)
+[2025-12-01T17:34:53.322255800] Atenção em: Servidor não encontrado: null
+[2025-12-01T17:35:12.265586700] Atenção em: Servidor não encontrado: null
+[2025-12-01T17:36:43.230412500] Atenção em: Entrada de usuário: admin
+[2025-12-01T17:36:44.000351] Atenção em: Entrada de usuário: teste1
+[2025-12-01T18:07:59.266290300] Atenção em: ERRO NO SHEET SOCKET CLIENTE MSG
+[2025-12-01T18:08:02.320118100] Erro em: Servidor OFF -> ConnectException: null
+[2025-12-01T18:08:02.320118100] Erro em: Servidor OFF -> ConnectException: null
+[2025-12-01T18:13:26.503306800] Atenção em: Entrada de usuário: admin
+[2025-12-01T18:21:56.561034100] Atenção em: Servidor não encontrado: null
+[2025-12-01T18:22:49.687952200] Atenção em: Entrada de usuário: admin
+[2025-12-01T18:24:20.965669200] Atenção em: Entrada de usuário: teste1
+[2025-12-01T18:32:06.078852200] Atenção em: ERRO NO SHEET SOCKET CLIENTE MSG
+[2025-12-01T18:33:05.053987900] Atenção em: Entrada de usuário: admin
+[2025-12-01T18:44:54.858741300] Atenção em: Entrada de usuário: admin
+[2025-12-01T18:45:33.200765900] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T18:45:33.201762100] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T18:48:02.993296400] Atenção em: Servidor não encontrado: null
+[2025-12-01T18:48:06.842142200] Atenção em: Entrada de usuário: teste1
+[2025-12-01T19:00:41.553187100] Atenção em: Entrada de usuário: admin
+[2025-12-01T19:04:39.327078700] Atenção em: Entrada de usuário: admin
+[2025-12-01T19:04:50.380061500] Atenção em: MODO EDIÇÃO
+[2025-12-01T19:04:53.092360800] Atenção em: MODO EDIÇÃO
+[2025-12-01T19:05:09.620340400] Atenção em: Entrada de usuário: teste1
+[2025-12-01T19:05:21.335524700] Atenção em: MODO EDIÇÃO
+[2025-12-01T19:05:24.793852100] Atenção em: Bloqueado por: admin
+[2025-12-01T19:05:59.625319600] Atenção em: MODO EDIÇÃO
+[2025-12-01T19:06:02.663116300] Atenção em: MODO EDIÇÃO
+[2025-12-01T19:06:06.684409700] Atenção em: Bloqueado por: teste1
+[2025-12-01T19:12:45.605125100] Atenção em: Entrada de usuário: admin
+[2025-12-01T19:14:17.997400400] Atenção em: Entrada de usuário: teste1
+[2025-12-01T19:14:41.526909200] Atenção em: MODO EDIÇÃO
+[2025-12-01T19:16:25.700939500] Atenção em: Entrada de usuário: teste1
+[2025-12-01T19:16:45.231436600] Atenção em: MODO EDIÇÃO
+[2025-12-01T19:16:53.628346] Atenção em: Entrada de usuário: admin
+[2025-12-01T19:17:04.214743600] Atenção em: Bloqueado por: teste1
+[2025-12-01T19:59:59.624387400] Atenção em: Entrada de usuário: admin
+[2025-12-01T20:00:07.471056500] Atenção em: Entrada de usuário: teste1
+[2025-12-01T20:00:17.292715] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:00:20.115405] Atenção em: Bloqueado por: teste1
+[2025-12-01T20:03:19.956167500] Atenção em: Entrada de usuário: admin
+[2025-12-01T20:03:28.928318100] Atenção em: Entrada de usuário: teste1
+[2025-12-01T20:03:29.042014] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:03:34.883322800] Atenção em: Bloqueado por: admin
+[2025-12-01T20:03:41.896508200] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:03:53.998662100] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:03:58.676805600] Atenção em: Bloqueado por: teste1
+[2025-12-01T20:09:10.815621800] Atenção em: Entrada de usuário: admin
+[2025-12-01T20:09:18.545943500] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:09:35.075452900] Atenção em: Entrada de usuário: teste1
+[2025-12-01T20:09:43.271598900] Atenção em: Bloqueado por: admin
+[2025-12-01T20:10:57.519684700] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:11:01.722951500] Atenção em: Bloqueado por: teste1
+[2025-12-01T20:11:19.117125800] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:11:20.307616400] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:18:27.906953700] Atenção em: Entrada de usuário: admin
+[2025-12-01T20:18:44.113782700] Atenção em: Entrada de usuário: teste1
+[2025-12-01T20:18:52.501930200] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:18:55.002049600] Atenção em: Bloqueado por: admin
+[2025-12-01T20:19:11.171995] Atenção em: Bloqueado por: admin
+[2025-12-01T20:19:15.661681300] Atenção em: Bloqueado por: admin
+[2025-12-01T20:19:17.491605900] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:22:40.709425500] Atenção em: Entrada de usuário: admin
+[2025-12-01T20:24:24.079936] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:24:40.253135400] Atenção em: Entrada de usuário: teste1
+[2025-12-01T20:24:42.142083300] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:24:48.718702100] Atenção em: Bloqueado por: admin
+[2025-12-01T20:25:33.073034200] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:25:41.817009200] Atenção em: Bloqueado por: admin
+[2025-12-01T20:25:49.785518900] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:26:14.963612200] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:26:19.062395600] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:26:21.486364100] Atenção em: Bloqueado por: admin
+[2025-12-01T20:26:52.832921800] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:26:56.693461] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:28:56.337992200] Atenção em: Entrada de usuário: admin
+[2025-12-01T20:29:02.905039500] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:29:48.246905600] Atenção em: Entrada de usuário: teste1
+[2025-12-01T20:29:53.989828600] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:30:09.289347200] Atenção em: Bloqueado por: teste1
+[2025-12-01T20:30:14.685490] Atenção em: Bloqueado por: teste1
+[2025-12-01T20:30:20.944624300] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:30:28.798774300] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:30:30.661793900] Atenção em: Bloqueado por: teste1
+[2025-12-01T20:30:37.984409700] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:30:42.128210700] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:30:45.106374200] Atenção em: Bloqueado por: admin
+[2025-12-01T20:34:05.353520100] Atenção em: Entrada de usuário: admin
+[2025-12-01T20:34:14.232422300] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:34:38.756555200] Atenção em: Entrada de usuário: teste1
+[2025-12-01T20:34:47.794415600] Atenção em: Bloqueado por: admin
+[2025-12-01T20:34:50.502556700] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:34:59.802555500] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:35:02.434161] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:35:04.739388400] Atenção em: Bloqueado por: teste1
+[2025-12-01T20:54:16.396128200] Atenção em: Entrada de usuário: admin
+[2025-12-01T20:54:24.634276500] Atenção em: Entrada de usuário: teste1
+[2025-12-01T20:54:33.415128200] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:54:37.285858600] Atenção em: Bloqueado por: admin
+[2025-12-01T20:55:26.958397500] Atenção em: Entrada de usuário: admin
+[2025-12-01T20:55:37.012802700] Atenção em: Entrada de usuário: teste2
+[2025-12-01T20:55:55.930137] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:56:08.224976700] Atenção em: Bloqueado por: admin
+[2025-12-01T20:56:11.266111600] Atenção em: Bloqueado por: admin
+[2025-12-01T20:56:55.651895900] Atenção em: Entrada de usuário: admin
+[2025-12-01T20:57:12.793381100] Atenção em: Entrada de usuário: teste1
+[2025-12-01T20:57:25.569579700] Atenção em: Bloqueado por: teste2
+[2025-12-01T20:57:30.111433200] Atenção em: Bloqueado por: teste2
+[2025-12-01T20:57:40.471865200] Atenção em: Entrada de usuário: teste2
+[2025-12-01T20:57:46.949609700] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:57:49.662802200] Atenção em: Bloqueado por: teste2
+[2025-12-01T20:58:02.880864400] Atenção em: MODO EDIÇÃO
+[2025-12-01T20:58:12.013796400] Atenção em: Bloqueado por: teste1
+[2025-12-01T20:58:28.420991600] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:01:47.152057100] Atenção em: Entrada de usuário: admin
+[2025-12-01T21:01:58.063149500] Atenção em: Entrada de usuário: teste1
+[2025-12-01T21:02:07.752852600] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:02:13.310741200] Atenção em: Bloqueado por: teste1
+[2025-12-01T21:02:33.315521200] Atenção em: Entrada de usuário: teste2
+[2025-12-01T21:02:55.101845] Atenção em: Bloqueado por: teste1
+[2025-12-01T21:03:11.375736100] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:07:04.250466400] Atenção em: Entrada de usuário: admin
+[2025-12-01T21:07:15.263887] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:07:21.870313] Atenção em: Entrada de usuário: teste1
+[2025-12-01T21:07:37.351317300] Atenção em: Entrada de usuário: teste2
+[2025-12-01T21:07:55.097842500] Atenção em: Bloqueado por: admin
+[2025-12-01T21:08:03.050163700] Atenção em: Bloqueado por: admin
+[2025-12-01T21:08:20.412813] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:08:23.689580] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:08:25.025998700] Atenção em: Bloqueado por: teste1
+[2025-12-01T21:08:32.863185900] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:09:48.327662800] Atenção em: Entrada de usuário: teste3
+[2025-12-01T21:10:33.258949100] Atenção em: Entrada de usuário: teste1
+[2025-12-01T21:21:08.497226400] Atenção em: Entrada de usuário: admin
+[2025-12-01T21:21:29.597083700] Atenção em: Entrada de usuário: teste1
+[2025-12-01T21:26:20.484656300] Atenção em: Servidor não encontrado: null
+[2025-12-01T21:26:33.157500600] Atenção em: Entrada de usuário: teste1
+[2025-12-01T21:26:46.673124200] Atenção em: Entrada de usuário: admin
+[2025-12-01T21:26:59.430240600] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:29:54.838243800] Atenção em: [INSERT] - Linha inserida
+[2025-12-01T21:29:54.842234700] Atenção em: [INSERT] - Linha não inserida
+[2025-12-01T21:33:00.910842500] Atenção em: Servidor não encontrado: null
+[2025-12-01T21:33:03.702375300] Atenção em: Servidor não encontrado: null
+[2025-12-01T21:33:16.803976300] Atenção em: Entrada de usuário: teste1
+[2025-12-01T21:33:22.568434] Atenção em: Entrada de usuário: admin
+[2025-12-01T21:33:48.576847100] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:33:51.807559400] Atenção em: Bloqueado por: teste1
+[2025-12-01T21:34:04.742033600] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:34:36.561114600] Atenção em: Entrada de usuário: teste2
+[2025-12-01T21:34:41.021176900] Atenção em: Entrada de usuário: teste3
+[2025-12-01T21:36:04.790645600] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:36:06.781550200] Atenção em: Bloqueado por: admin
+[2025-12-01T21:36:08.650448900] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:36:10.776346400] Atenção em: Bloqueado por: admin
+[2025-12-01T21:36:12.903994200] Atenção em: Bloqueado por: admin
+[2025-12-01T21:36:47.594289900] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:37:41.897484500] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:38:48.908552600] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:38:52.398692500] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:39:00.814068900] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:39:08.768635100] Atenção em: Bloqueado por: teste1
+[2025-12-01T21:39:10.808794200] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:39:23.159252100] Atenção em: Bloqueado por: admin
+[2025-12-01T21:39:27.978535] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:39:29.097174500] Atenção em: Bloqueado por: admin
+[2025-12-01T21:39:30.140592300] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:39:31.598841700] Atenção em: MODO EDIÇÃO
+[2025-12-01T21:53:30.658665500] Atenção em: Entrada de usuário: admin
+[2025-12-01T22:37:22.579026300] Atenção em: Entrada de usuário: admin
+[2025-12-01T22:44:55.458592200] Atenção em: Entrada de usuário: admin
+[2025-12-01T22:49:35.456977800] Atenção em: Entrada de usuário: admin
+[2025-12-01T22:53:22.436473] Atenção em: Entrada de usuário: admin
+[2025-12-01T22:54:12.462338600] Atenção em: Entrada de usuário: admin
+[2025-12-01T22:56:20.254249900] Atenção em: Entrada de usuário: admin
+[2025-12-02T14:10:41.164899] Atenção em: Entrada de usuário: admin
+[2025-12-02T14:13:51.185363800] Atenção em: Entrada de usuário: admin
+[2025-12-02T14:24:13.791590900] Atenção em: Entrada de usuário: admin
+[2025-12-02T14:31:09.742732600] Atenção em: Entrada de usuário: admin
+[2025-12-02T14:34:00.373238500] Atenção em: Entrada de usuário: admin
+[2025-12-02T14:38:46.831812] Atenção em: Entrada de usuário: admin
+[2025-12-02T15:44:15.620835600] Atenção em: Entrada de usuário: admin
+[2025-12-02T15:53:05.658953500] Atenção em: Entrada de usuário: admin
+[2025-12-02T15:56:12.604025200] Atenção em: Entrada de usuário: admin
+[2025-12-02T15:59:32.617214] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:05:39.933247800] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:07:24.647937600] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:10:53.649360600] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:17:12.955691700] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:19:21.499678800] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:20:32.134310100] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:22:28.641826500] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:24:04.497835600] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:32:46.078308200] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:34:25.528665600] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:49:53.363764700] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:54:01.752232700] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:56:03.746720] Atenção em: Entrada de usuário: admin
+[2025-12-02T16:59:30.115089500] Atenção em: Entrada de usuário: admin
+[2025-12-02T17:01:33.995562300] Atenção em: Entrada de usuário: admin
+[2025-12-02T17:05:08.157681600] Atenção em: Entrada de usuário: admin
+[2025-12-02T17:08:36.316511900] Atenção em: Entrada de usuário: admin
+[2025-12-02T17:19:34.379853500] Atenção em: Entrada de usuário: admin
+[2025-12-02T17:20:43.655864] Atenção em: Entrada de usuário: admin
+[2025-12-02T17:23:06.826800] Atenção em: Entrada de usuário: admin
+[2025-12-02T17:23:46.934640700] Atenção em: Entrada de usuário: admin
+[2025-12-02T17:25:43.044915800] Atenção em: Entrada de usuário: admin
+[2025-12-02T17:28:21.136217100] Atenção em: Entrada de usuário: admin
+[2025-12-02T18:14:13.733232600] Atenção em: Servidor não encontrado: null
+[2025-12-02T18:15:05.373213500] Atenção em: Entrada de usuário: admin
+[2025-12-02T18:15:11.979841700] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:16:39.060069400] Atenção em: [INSERT] - Linha inserida
+[2025-12-02T18:16:39.061583100] Atenção em: [INSERT] - Linha não inserida
+[2025-12-02T18:16:44.976453100] Atenção em: [DELETE] - Linha excluída
+[2025-12-02T18:16:44.978446400] Atenção em: [DELETE] - Linha não excluída
+[2025-12-02T18:18:59.447848500] Atenção em: ERRO NO SHEET SOCKET CLIENTE MSG
+[2025-12-02T18:18:59.447848500] Atenção em: ERRO NO SHEET SOCKET CLIENTE MSG
+[2025-12-02T18:18:59.456837600] Atenção em: ERRO NO SHEET SOCKET CLIENTE MSG
+[2025-12-02T18:18:59.460813800] Atenção em: ERRO NO SHEET SOCKET CLIENTE MSG
+[2025-12-02T18:18:59.463806600] Atenção em: ERRO NO SHEET SOCKET CLIENTE MSG
+[2025-12-02T18:22:05.015038800] Atenção em: Entrada de usuário: admin
+[2025-12-02T18:24:02.631992600] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:24:06.177599900] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:24:07.192051500] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:24:08.584199400] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:24:16.784291200] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:24:18.419216800] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:24:19.745016200] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:24:22.264845300] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:25:18.914727] Atenção em: Entrada de usuário: admin
+[2025-12-02T18:25:25.133845100] Atenção em: Entrada de usuário: teste1
+[2025-12-02T18:25:36.150917200] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:25:38.938568400] Atenção em: Bloqueado por: teste1
+[2025-12-02T18:25:48.686919] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:26:01.776601200] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:29:15.307467100] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:29:21.118751500] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:29:22.360643500] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:29:36.827896900] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:29:42.262341300] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:41:54.699956700] Atenção em: Entrada de usuário: admin
+[2025-12-02T18:42:12.027608100] Atenção em: Entrada de usuário: teste1
+[2025-12-02T18:42:35.087521300] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:42:56.751253] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:43:24.705625400] Atenção em: MODO EDIÇÃO
+[2025-12-02T18:43:26.937738500] Atenção em: Bloqueado por: teste1
+[2025-12-02T18:45:16.909755600] Atenção em: Entrada de usuário: teste2
+[2025-12-02T18:52:44.238949600] Atenção em: Entrada de usuário: admin
+[2025-12-02T18:54:40.797195800] Atenção em: Entrada de usuário: admin
+[2025-12-02T18:56:49.343600500] Atenção em: Entrada de usuário: admin
+[2025-12-02T18:58:46.843713800] Atenção em: Entrada de usuário: admin
+[2025-12-02T19:07:27.938252800] Atenção em: Entrada de usuário: admin
+[2025-12-02T19:08:25.581951800] Atenção em: Entrada de usuário: admin
+[2025-12-02T19:12:52.656968900] Atenção em: Entrada de usuário: admin
+[2025-12-02T19:13:41.758619300] Atenção em: Entrada de usuário: admin
+[2025-12-02T19:14:55.955181] Atenção em: Entrada de usuário: admin
+[2025-12-02T19:16:16.571221900] Atenção em: Entrada de usuário: admin
+[2025-12-02T19:43:34.880564600] Atenção em: Entrada de usuário: admin
+[2025-12-02T19:43:58.366184700] Atenção em: Entrada de usuário: teste1
+[2025-12-02T19:43:58.897277] Atenção em: MODO EDIÇÃO
+[2025-12-02T19:44:19.601015] Atenção em: MODO EDIÇÃO
+[2025-12-02T19:45:35.108559600] Atenção em: Bloqueado por: teste1
+[2025-12-02T19:46:03.437754300] Atenção em: Entrada de usuário: teste2
+[2025-12-02T19:51:30.650727300] Atenção em: Entrada de usuário: admin
+[2025-12-02T19:52:15.868212600] Atenção em: Entrada de usuário: admin
+[2025-12-02T19:52:32.921101600] Atenção em: MODO EDIÇÃO
+[2025-12-02T19:54:39.513207] Atenção em: Entrada de usuário: admin
+[2025-12-02T19:54:53.028777500] Atenção em: MODO EDIÇÃO
+[2025-12-02T19:54:58.583449] Atenção em: [INSERT] - Linha inserida
+[2025-12-02T19:54:58.585443100] Atenção em: [INSERT] - Linha não inserida
+[2025-12-02T19:54:59.468668100] Atenção em: [INSERT] - Linha inserida
+[2025-12-02T19:54:59.470141900] Atenção em: [INSERT] - Linha não inserida
+[2025-12-02T19:55:00.653054800] Atenção em: [INSERT] - Linha inserida
+[2025-12-02T19:55:00.654051800] Atenção em: [INSERT] - Linha não inserida
+[2025-12-02T19:55:01.296364400] Atenção em: [INSERT] - Linha inserida
+[2025-12-02T19:55:01.297360900] Atenção em: [INSERT] - Linha não inserida
+[2025-12-02T19:55:02.134204500] Atenção em: [INSERT] - Linha inserida
+[2025-12-02T19:55:02.135488400] Atenção em: [INSERT] - Linha não inserida
+[2025-12-02T19:55:03.126421300] Atenção em: [INSERT] - Linha inserida
+[2025-12-02T19:55:03.127610] Atenção em: [INSERT] - Linha não inserida
+[2025-12-02T19:55:14.324301500] Atenção em: MODO EDIÇÃO
+[2025-12-02T19:56:32.101958] Atenção em: Entrada de usuário: teste1
+[2025-12-02T19:59:06.349311700] Atenção em: [DELETE] - Linha excluída
+[2025-12-02T19:59:06.351305400] Atenção em: [DELETE] - Linha não excluída
+[2025-12-02T19:59:07.509934] Atenção em: [DELETE] - Linha excluída
+[2025-12-02T19:59:07.511647100] Atenção em: [DELETE] - Linha não excluída
+[2025-12-02T19:59:08.677378500] Atenção em: [DELETE] - Linha excluída
+[2025-12-02T19:59:08.679170800] Atenção em: [DELETE] - Linha não excluída
+[2025-12-02T20:00:57.239939200] Atenção em: Entrada de usuário: admin
+[2025-12-02T20:01:00.170588400] Atenção em: Entrada de usuário: teste1
+[2025-12-02T20:02:07.339373600] Atenção em: [INSERT] - Linha inserida
+[2025-12-02T20:02:07.341367300] Atenção em: [INSERT] - Linha não inserida
+[2025-12-02T20:02:08.050337300] Atenção em: [INSERT] - Linha inserida
+[2025-12-02T20:02:08.052333500] Atenção em: [INSERT] - Linha não inserida
+[2025-12-02T20:02:08.759699200] Atenção em: [INSERT] - Linha inserida
+[2025-12-02T20:02:08.762243500] Atenção em: [INSERT] - Linha não inserida
+[2025-12-02T20:02:22.029008400] Atenção em: MODO EDIÇÃO
+[2025-12-02T20:02:24.298183600] Atenção em: MODO EDIÇÃO
+[2025-12-02T20:02:35.951859200] Atenção em: MODO EDIÇÃO
+[2025-12-02T20:02:41.735214300] Atenção em: MODO EDIÇÃO
+[2025-12-02T20:05:35.520641900] Atenção em: MODO EDIÇÃO
+[2025-12-02T20:05:37.793561900] Atenção em: MODO EDIÇÃO
+[2025-12-02T20:05:41.689339500] Atenção em: MODO EDIÇÃO
+[2025-12-02T20:05:44.322337600] Atenção em: MODO EDIÇÃO
+[2025-12-02T20:07:28.019880] Atenção em: Entrada de usuário: teste1
+[2025-12-02T20:07:37.438908300] Atenção em: Entrada de usuário: teste2
+[2025-12-02T20:09:05.851509] Atenção em: Entrada de usuário: admin
+[2025-12-02T20:09:11.653804500] Atenção em: Entrada de usuário: teste1
+[2025-12-02T20:10:55.819727600] Atenção em: Entrada de usuário: admin
+[2025-12-02T20:10:59.996093] Atenção em: Entrada de usuário: teste1
+[2025-12-02T20:15:13.084578100] Atenção em: Entrada de usuário: admin
+[2025-12-02T20:15:19.830214600] Atenção em: Entrada de usuário: teste1
+[2025-12-02T20:17:16.993471800] Atenção em: Entrada de usuário: admin
+[2025-12-02T20:17:23.884171900] Atenção em: Entrada de usuário: teste1
+[2025-12-02T20:18:27.428410900] Atenção em: Entrada de usuário: admin
+[2025-12-02T20:18:40.669899400] Atenção em: Entrada de usuário: admin
+[2025-12-02T20:18:58.546387900] Atenção em: Entrada de usuário: teste1
+[2025-12-02T20:19:48.534131600] Atenção em: Entrada de usuário: admin
+[2025-12-02T20:19:51.490084600] Atenção em: Entrada de usuário: teste1
+[2025-12-02T20:24:26.931118300] Atenção em: Servidor não encontrado: null
+[2025-12-03T10:00:22.606405500] Atenção em: Entrada de usuário: admin
+[2025-12-03T10:00:46.217763700] Atenção em: Entrada de usuário: teste1
+[2025-12-03T10:01:53.077409] Atenção em: MODO EDIÇÃO
+[2025-12-03T10:07:00.995823600] Atenção em: Entrada de usuário: admin
+[2025-12-03T10:07:46.839653800] Atenção em: Entrada de usuário: teste1
+[2025-12-03T10:08:39.232722] Atenção em: [INSERT] - Linha inserida
+[2025-12-03T10:08:39.234221500] Atenção em: [INSERT] - Linha não inserida
+[2025-12-03T10:11:04.778037800] Atenção em: Entrada de usuário: admin
+[2025-12-03T10:13:34.173277] Atenção em: MODO EDIÇÃO
+[2025-12-03T10:15:50.274487900] Atenção em: Entrada de usuário: admin
+[2025-12-03T10:17:57.964415] Atenção em: Entrada de usuário: admin
+[2025-12-03T10:18:04.363639100] Atenção em: Entrada de usuário: teste1
+[2025-12-03T10:18:51.862216100] Atenção em: MODO EDIÇÃO
+[2025-12-03T10:19:54.673653800] Atenção em: MODO EDIÇÃO
+[2025-12-03T10:19:56.908358500] Atenção em: MODO EDIÇÃO
+[2025-12-03T10:19:58.600027300] Atenção em: MODO EDIÇÃO
+[2025-12-03T10:20:14.759047500] Atenção em: MODO EDIÇÃO
+[2025-12-03T10:21:50.704567600] Atenção em: Entrada de usuário: admin
+[2025-12-03T10:22:01.851831100] Atenção em: MODO EDIÇÃO
+[2025-12-03T10:23:35.567310400] Atenção em: MODO EDIÇÃO
+[2025-12-03T10:29:03.979851400] Atenção em: Entrada de usuário: admin
+[2025-12-03T10:29:15.635688300] Atenção em: Entrada de usuário: teste1
+[2025-12-03T10:30:39.326607700] Atenção em: MODO EDIÇÃO
+[2025-12-03T10:30:58.110382200] Atenção em: MODO EDIÇÃO
+[2025-12-03T11:16:35.099307100] Atenção em: Entrada de usuário: admin
+[2025-12-03T11:42:37.091977400] Atenção em: Entrada de usuário: admin
+[2025-12-03T11:43:45.528855500] Atenção em: Entrada de usuário: admin
+[2025-12-03T11:45:49.991287800] Atenção em: Entrada de usuário: admin
+[2025-12-03T12:00:56.540277600] Atenção em: MODO EDIÇÃO
+[2025-12-03T12:01:04.846629400] Atenção em: [INSERT] - Linha inserida
+[2025-12-03T12:01:04.849007200] Atenção em: [INSERT] - Linha não inserida
+[2025-12-03T12:01:05.946323200] Atenção em: MODO EDIÇÃO
+[2025-12-03T12:01:07.310307400] Atenção em: MODO EDIÇÃO

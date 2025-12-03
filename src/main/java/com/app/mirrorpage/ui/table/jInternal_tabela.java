@@ -14,20 +14,29 @@ import com.app.mirrorpage.client.net.ApiClient;
 import com.app.mirrorpage.client.net.SheetSocketClient;
 import com.app.mirrorpage.ui.Principal;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.net.URI;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
+import javax.swing.BorderFactory;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
@@ -50,7 +59,7 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
     Cliente_listener listener;
     ApiClient api;
     private SheetSocketClient wsClient;
-    private SyncAmbiente sync;
+    public SyncAmbiente sync;
 
     public String usuarioLogado;
 
@@ -61,8 +70,13 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
     private JSplitPane splitPane;
     private Lauda laudaPanel;
     private boolean laudaVisivel = false;
+    private String currentLaudaPath = null;
+    private int currentLaudaRow = -1;
+    private boolean isLaudaLockedByMe = false; // Controle de permissão
 
     AtomicBoolean acao_line = new AtomicBoolean(true);
+
+    Popup popupAtual = null;
 
     public jInternal_tabela(DefaultTableModel model, ApiClient api, Cliente_listener listener, String csv_server, String usuarioLogado, TemaSyncClient temaSync) {
         this.api = api;
@@ -145,6 +159,29 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
             }
         ));
         tabela_news.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tabela_news.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                tabela_newsMouseDragged(evt);
+            }
+        });
+        tabela_news.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tabela_newsFocusLost(evt);
+            }
+        });
+        tabela_news.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabela_newsMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabela_newsMousePressed(evt);
+            }
+        });
+        tabela_news.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                tabela_newsComponentResized(evt);
+            }
+        });
         tabela_news.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tabela_newsKeyPressed(evt);
@@ -246,7 +283,6 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
             System.out.println("Entrada de Jornal Identificada");
             sync.onCellEdit(modelRow, modelCol, value);
             add_tempo_entrada(modelRow, modelCol);            // dentro dele já chama sync
-
             return;
         }
 
@@ -255,7 +291,6 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
             System.out.println("Encerramento de Jornal Identificada");
             sync.onCellEdit(modelRow, modelCol, value);
             add_tempo_encerramento(row, col);       // dentro dele já chama sync
-
             return;
         }
 
@@ -351,7 +386,10 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
                 // Pega algum dado da linha para mostrar no título (ex: coluna 1 ou 2)
                 // Ajuste o índice '1' para a coluna que tem o nome da matéria/slug
                 String assunto = tabela_news.getValueAt(row, 5).toString();
-                String titulo = "LINHA " + (row + 1) + " - " + assunto;
+                String titulo = assunto;
+                if(assunto.isBlank()){
+                    titulo = "Sem retranca";
+                }
 
                 // Chama o Principal
                 alternarLauda(titulo);
@@ -362,6 +400,63 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
             evt.consume();
             // Chama o Principal para fechar
             esconderLauda();
+        }
+
+        if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_F9) {
+            evt.consume();
+            enviarLinhaParaFinal();
+        }
+
+        if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            int viewRowEditing = tabela_news.getSelectedRow();
+            int viewColEditing = tabela_news.getSelectedColumn();
+
+            // 🔹 AQUI ainda está o valor ANTIGO no model
+            int modelRow = tabela_news.convertRowIndexToModel(viewRowEditing);
+            int modelCol = tabela_news.convertColumnIndexToModel(viewColEditing);
+
+            oldCellValue = tabela_news.getModel().getValueAt(modelRow, modelCol);
+            oldCellRow = viewRowEditing;  // guardando em coordenada de VIEW
+            oldCellCol = viewColEditing;
+        }
+
+        if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            int viewRowEditing = tabela_news.getSelectedRow();
+            int viewColEditing = tabela_news.getSelectedColumn();
+
+            // 🔹 AQUI ainda está o valor ANTIGO no model
+            int modelRow = tabela_news.convertRowIndexToModel(viewRowEditing);
+            int modelCol = tabela_news.convertColumnIndexToModel(viewColEditing);
+
+            oldCellValue = tabela_news.getModel().getValueAt(modelRow, modelCol);
+            oldCellRow = viewRowEditing;  // guardando em coordenada de VIEW
+            oldCellCol = viewColEditing;
+        }
+
+        if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            int viewRowEditing = tabela_news.getSelectedRow();
+            int viewColEditing = tabela_news.getSelectedColumn();
+
+            // 🔹 AQUI ainda está o valor ANTIGO no model
+            int modelRow = tabela_news.convertRowIndexToModel(viewRowEditing);
+            int modelCol = tabela_news.convertColumnIndexToModel(viewColEditing);
+
+            oldCellValue = tabela_news.getModel().getValueAt(modelRow, modelCol);
+            oldCellRow = viewRowEditing;  // guardando em coordenada de VIEW
+            oldCellCol = viewColEditing;
+        }
+
+        if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+            int viewRowEditing = tabela_news.getSelectedRow();
+            int viewColEditing = tabela_news.getSelectedColumn();
+
+            // 🔹 AQUI ainda está o valor ANTIGO no model
+            int modelRow = tabela_news.convertRowIndexToModel(viewRowEditing);
+            int modelCol = tabela_news.convertColumnIndexToModel(viewColEditing);
+
+            oldCellValue = tabela_news.getModel().getValueAt(modelRow, modelCol);
+            oldCellRow = viewRowEditing;  // guardando em coordenada de VIEW
+            oldCellCol = viewColEditing;
         }
     }//GEN-LAST:event_tabela_newsKeyPressed
 
@@ -389,6 +484,7 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         // TODO add your handling code here:
+        close_pop_up();
         if (wsClient != null) {
             try {
                 wsClient.disconnectStomp();
@@ -407,6 +503,50 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
         });
 
     }//GEN-LAST:event_formInternalFrameOpened
+
+    private void tabela_newsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_newsMouseClicked
+        // TODO add your handling code here:
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            int viewRowEditing = tabela_news.getSelectedRow();
+            int viewColEditing = tabela_news.getSelectedColumn();
+
+            // 🛑 PROTEÇÃO: Se clicou fora (vazio), índices são -1. Pára aqui.
+            if (viewRowEditing < 0 || viewColEditing < 0) {
+                return;
+            }
+
+            // 🔹 AQUI ainda está o valor ANTIGO no model
+            int modelRow = tabela_news.convertRowIndexToModel(viewRowEditing);
+            int modelCol = tabela_news.convertColumnIndexToModel(viewColEditing);
+
+            oldCellValue = tabela_news.getModel().getValueAt(modelRow, modelCol);
+            oldCellRow = viewRowEditing;  // guardando em coordenada de VIEW
+            oldCellCol = viewColEditing;
+        }
+    }//GEN-LAST:event_tabela_newsMouseClicked
+
+    private void tabela_newsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_newsMousePressed
+        // TODO add your handling code here:
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            updatePopupSelecao(tabela_news);
+        }
+    }//GEN-LAST:event_tabela_newsMousePressed
+
+    private void tabela_newsMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_newsMouseDragged
+        // TODO add your handling code here:
+        updatePopupSelecao(tabela_news);
+    }//GEN-LAST:event_tabela_newsMouseDragged
+
+    private void tabela_newsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tabela_newsFocusLost
+        // TODO add your handling code here:
+        close_pop_up();
+    }//GEN-LAST:event_tabela_newsFocusLost
+
+    private void tabela_newsComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tabela_newsComponentResized
+        // TODO add your handling code here:
+        close_pop_up();
+
+    }//GEN-LAST:event_tabela_newsComponentResized
 
     void barra_titulo() {
         // Remove a barra de título, mas mantém a borda
@@ -675,6 +815,7 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
         if (valor != null) {
             if (listener != null) {
                 listener.inicio_jornal(valor);
+                listener.att_tempo();
                 listener.stts_jornal();
             }
         }
@@ -778,6 +919,7 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
                     this::onRowInsertedEvent,
                     this::onRowMovedEvent,
                     this::onDeletedEvent,
+                    this::onLockEvent,
                     (msg) -> {
                         Log.registrarErro_noEx("ERRO NO SHEET SOCKET CLIENTE MSG");
                     }
@@ -876,6 +1018,7 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
                     oldCellRow += 1;
                 }
                 selecao_line(oldCellRow, oldCellCol);
+                atualizarLaudaAbertaSeNecessario(ev.afterRow());
             });
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -931,12 +1074,44 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
 
             SwingUtilities.invokeLater(() -> {
                 sync.aplicarCsvNoModelo(csv);
-
+                if (oldCellRow > ev.modelRow()) {
+                    oldCellRow -= 1;
+                }
                 selecao_line(oldCellRow, oldCellCol);
             });
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void onLockEvent(com.app.mirrorpage.client.dto.FileLockEvent evt) {
+        SwingUtilities.invokeLater(() -> {
+            if (!laudaVisivel || currentLaudaPath == null || !currentLaudaPath.equals(evt.path)) {
+                return;
+            }
+            if (usuarioLogado.equals(evt.owner)) {
+                return;
+            }
+
+            // 1. SE O CONTEÚDO MUDOU, RECARREGA O TEXTO IMEDIATAMENTE
+            if (evt.contentChanged) {
+                System.out.println("[SYNC] Texto atualizado remotamente!");
+                carregarTextoLauda(false); // false = não tenta travar, só baixa
+            }
+
+            // 2. ATUALIZA O STATUS VISUAL
+            if (evt.locked) {
+                // Está bloqueado (seja novo bloqueio ou apenas um update de conteúdo)
+                laudaPanel.lblUsuario.setText("Bloqueado por: " + evt.owner);
+                laudaPanel.lblUsuario.setForeground(java.awt.Color.RED);
+                laudaPanel.txtTexto.setEditable(false);
+                isLaudaLockedByMe = false;
+            } else {
+                // Foi liberado!
+                laudaPanel.lblUsuario.setText("Lauda Livre");
+                laudaPanel.lblUsuario.setForeground(new java.awt.Color(0, 150, 0)); // Verde
+            }
+        });
     }
 
     void add_line(int viewRow, int viewCol) {
@@ -1087,6 +1262,71 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
         });
     }
 
+    private void enviarLinhaParaFinal() {
+        // 1. Identificar a linha selecionada
+        int viewRow = tabela_news.getSelectedRow();
+        if (viewRow == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha para copiar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Converte índice visual (se tiver filtro/ordenação) para índice real
+        int modelRow = tabela_news.convertRowIndexToModel(viewRow);
+
+        // 2. Definir Destino (Troca "Prelim" por "Final")
+        // csv_server é a variável global que guarda o caminho atual (ex: /BDBR/Prelim.csv)
+        
+        System.out.println("CSV: " + csv_server);
+        String targetPath = csv_server.replace("Prelim", "Final");
+
+        System.out.println("CSV: " + csv_server);
+        if (targetPath.equals(csv_server)) {
+            // Se o nome não mudou, significa que não estamos no Prelim (ou já estamos no Final)
+            java.awt.Toolkit.getDefaultToolkit().beep(); // Barulhinho de erro
+            return;
+        }
+
+        // 3. Confirmação do Usuário
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Deseja copiar a linha " + (modelRow + 1) + " para a planilha FINAL?",
+                "Confirmar Envio (CTRL+F9)",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        // 4. Execução em Thread (Para não travar a tela enquanto espera a rede)
+        new Thread(() -> {
+            try {
+                // Chama a API. 
+                // Se der erro de Lock (409) ou Conexão, vai cair no CATCH.
+                // Se passar direto, é SUCESSO.
+                api.copyRowToFinal(csv_server, modelRow, targetPath);
+
+                // Feedback de Sucesso na UI
+                SwingUtilities.invokeLater(() -> {
+                    JOptionPane.showMessageDialog(this, "Sucesso! Linha enviada para o Final.");
+
+                    // Opcional: Se quiser limpar a seleção para indicar conclusão
+                    tabela_news.clearSelection();
+                });
+
+            } catch (Exception e) {
+                // Feedback de Erro na UI
+                // e.getMessage() trará a mensagem do servidor: "Linha bloqueada. Coluna X em edição..."
+                String msgErro = e.getMessage();
+
+                SwingUtilities.invokeLater(() -> {
+                    JOptionPane.showMessageDialog(this,
+                            "Não foi possível enviar:\n" + msgErro,
+                            "Falha no Envio",
+                            JOptionPane.ERROR_MESSAGE);
+                });
+            }
+        }).start();
+    }
+
     private void initLaudaSystem() {
         // 1. Inicializa o painel da lauda
         laudaPanel = new Lauda();
@@ -1101,6 +1341,11 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
                     // Chama o Principal para fechar a gaveta
                     esconderLauda();
 
+                }
+
+                if ((e.isControlDown() || e.isMetaDown()) && e.getKeyCode() == KeyEvent.VK_S) {
+                    e.consume();
+                    salvarLaudaAtual(null); // null = apenas salva, não faz mais nada
                 }
             }
         });
@@ -1127,69 +1372,391 @@ public class jInternal_tabela extends javax.swing.JInternalFrame {
     }
 
     public void mostrarLauda(String titulo) {
-        // 1. Limpa o container original (pn_tabela)
+        int viewRow = tabela_news.getSelectedRow();
+        if (viewRow == -1) {
+            return;
+        }
+
+        int modelRow = tabela_news.convertRowIndexToModel(viewRow);
+        this.currentLaudaRow = modelRow;
+        this.currentLaudaPath = gerarPathLauda(modelRow);
+
+        // Prepara UI (Layout)
         pn_tabela.removeAll();
-
-        // Define BorderLayout para que o SplitPane ocupe todo o espaço
         pn_tabela.setLayout(new BorderLayout());
-
-        // 2. Configura o SplitPane
-        // TOP: O seu JDesktopPane original (variável 'Desktop')
         splitPane.setTopComponent(jScrollPane1);
-        // BOTTOM: O painel da Lauda
         splitPane.setBottomComponent(laudaPanel);
-
-        splitPane.setName("splitPane_lauda");
-
-        // 3. Adiciona o SplitPane ao pn_tabela
         pn_tabela.add(splitPane, BorderLayout.CENTER);
 
-        // 4. Configurações visuais
-        laudaPanel.abrirLauda(titulo, ""); // Prepara o texto
-
+        laudaPanel.abrirLauda(titulo, "Carregando...", usuarioLogado);
         laudaVisivel = true;
 
-        // 5. Atualiza a tela
         pn_tabela.revalidate();
         pn_tabela.repaint();
 
-        Principal root = getPrincipal();
+        // CHAMA O NOVO MÉTODO (Com flag true para tentar lock inicial)
+        carregarTextoLauda(true);
 
+        new SwingWorker<Void, Void>() {
+            String texto = "";
+            boolean lockGranted = false;
+            String lockOwner = "";
+
+            @Override
+            protected Void doInBackground() throws Exception {
+                // 1. Busca o Texto (Ignora erro de leitura pois pode ser arquivo novo)
+                try {
+                    texto = api.fetchLaudaContent(currentLaudaPath);
+                } catch (Exception e) {
+                    texto = "";
+                }
+
+                // 2. Tenta o Lock
+                // Se der erro aqui (404, 403, 500), vai lançar Exception e cair no catch do done()
+                ApiClient.LockResult res = api.tryLockFile(currentLaudaPath);
+                lockGranted = res.granted;
+                lockOwner = res.owner;
+
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    // 🚨 O GRANDE SEGREDO: get() traz a exceção do background para cá
+                    get();
+                } catch (Exception e) {
+                    e.printStackTrace(); // Mostra no console do NetBeans
+                    JOptionPane.showMessageDialog(jInternal_tabela.this,
+                            "ERRO TÉCNICO:\n" + e.getCause().getMessage(),
+                            "Debug Lock",
+                            JOptionPane.ERROR_MESSAGE);
+
+                    // Marca como falha para cair no 'else' abaixo
+                    lockGranted = false;
+                }
+
+                laudaPanel.txtTexto.setText(texto);
+                laudaPanel.txtTexto.setCaretPosition(0);
+                laudaPanel.txtTexto.setEnabled(true);
+
+                isLaudaLockedByMe = lockGranted;
+
+                if (lockGranted) {
+                    // ✅ Sucesso
+                    laudaPanel.txtTexto.setEditable(true);
+                    Log.registrarErro_noEx("MODO EDIÇÃO");
+                    laudaPanel.lblUsuario.setText("Editando: " + usuarioLogado); // Ou "Você - Editando"
+                } else if (lockOwner != null && !lockOwner.isBlank() && !lockOwner.equals("null")) {
+                    // 🔒 Bloqueado por outro
+                    laudaPanel.txtTexto.setEditable(false);
+                    laudaPanel.lblUsuario.setText("Bloqueado por: " + lockOwner);
+                    Log.registrarErro_noEx("Bloqueado por: " + lockOwner);
+                } else {
+                    // ⚠️ Erro Técnico
+                    laudaPanel.txtTexto.setEditable(false);
+                    laudaPanel.lblUsuario.setText("Somente Leitura");
+                    Log.registrarErro_noEx("Modo Leitura (Falha ao obter Lock)");
+                }
+
+                laudaPanel.txtTexto.requestFocusInWindow();
+                splitPane.setDividerLocation(0.5);
+            }
+        }.execute();
+
+        // Aplica temas
+        Principal root = getPrincipal();
         try {
             temaSync.aplicarTemaGeral(root, tabela_news);
-        } catch(Exception e){
-            Log.registrarErro("[mostrarLauda] Aplicar Tema Geral - ", e);
+        } catch (Exception e) {
+            Log.registrarErro("[mostrarLauda] Aplicar Tema - ", e);
         }
-
-        // Opcional: Ajustar o foco para o editor
-        SwingUtilities.invokeLater(() -> {
-            laudaPanel.txtTexto.requestFocusInWindow();
-            splitPane.setDividerLocation(0.5); // Divide 50/50
-        });
     }
 
     public void esconderLauda() {
-        // 1. Remove o SplitPane
-        pn_tabela.removeAll();
-        pn_tabela.setLayout(new BorderLayout()); // Garante o layout
+        // 1. Captura o estado antes de limpar
+        final String pathParaLiberar = currentLaudaPath;
+        final boolean euTinhaOLock = isLaudaLockedByMe;
 
-        // 2. Devolve o Desktop Pane para o pn_tabela (como era no início)
+        // 2. Destrava no Servidor (Async) - SEM SALVAR
+        if (pathParaLiberar != null && euTinhaOLock) {
+            new Thread(() -> {
+                try {
+                    api.unlockFile(pathParaLiberar);
+                    System.out.println("[LAUDA] Fechado sem salvar (Unlock enviado): " + pathParaLiberar);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+
+        // 3. Limpeza da UI (Imediata)
+        pn_tabela.removeAll();
+        pn_tabela.setLayout(new BorderLayout());
         pn_tabela.add(jScrollPane1, BorderLayout.CENTER);
 
         laudaVisivel = false;
 
-        // 3. Atualiza a tela
+        // Zera variáveis globais
+        currentLaudaPath = null;
+        currentLaudaRow = -1;
+        isLaudaLockedByMe = false;
+
         pn_tabela.revalidate();
         pn_tabela.repaint();
 
-        Principal root = getPrincipal();
-
-//        temaSync.aplicarTemaGeral(root, tabela_news);
-        // 4. Devolve o foco para a tabela
         if (tabela_news != null) {
             tabela_news.requestFocusInWindow();
         }
+    }
 
+    private void carregarTextoLauda(boolean forcarLock) {
+        if (currentLaudaPath == null) {
+            return;
+        }
+
+        // Desabilita enquanto carrega para evitar edição durante o refresh
+        laudaPanel.txtTexto.setEnabled(false);
+
+        new SwingWorker<Void, Void>() {
+            String texto = "";
+            boolean lockGranted = false;
+            String lockOwner = "";
+
+            @Override
+            protected Void doInBackground() throws Exception {
+                // 1. Busca o conteúdo atualizado (SYNC DE CONTEÚDO)
+                try {
+                    texto = api.fetchLaudaContent(currentLaudaPath);
+                } catch (Exception e) {
+                    texto = "";
+                }
+
+                // 2. Se pedido, tenta pegar o lock (SYNC DE BLOQUEIO)
+                if (forcarLock) {
+                    var res = api.tryLockFile(currentLaudaPath);
+                    lockGranted = res.granted;
+                    lockOwner = res.owner;
+                }
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                // Atualiza o texto na tela
+                laudaPanel.txtTexto.setText(texto);
+                laudaPanel.txtTexto.setCaretPosition(0);
+                laudaPanel.txtTexto.setEnabled(true);
+
+                if (forcarLock) {
+                    atualizarStatusLock(lockGranted, lockOwner);
+                }
+
+                // Alerta visual discreto
+                System.out.println("[SYNC] Conteúdo da lauda atualizado.");
+            }
+        }.execute();
+    }
+
+    // Método auxiliar para atualizar as cores/texto do status
+    private void atualizarStatusLock(boolean granted, String owner) {
+        isLaudaLockedByMe = granted;
+
+        if (granted) {
+            laudaPanel.lblUsuario.setText("Editando: " + usuarioLogado);
+            laudaPanel.lblUsuario.setForeground(new java.awt.Color(0, 150, 0)); // Verde
+            laudaPanel.txtTexto.setEditable(true);
+        } else if (owner != null && !owner.isBlank() && !owner.equals("null")) {
+            laudaPanel.lblUsuario.setText("Bloqueado por: " + owner);
+            laudaPanel.lblUsuario.setForeground(java.awt.Color.RED);
+            laudaPanel.txtTexto.setEditable(false);
+        } else {
+            laudaPanel.lblUsuario.setText("Lauda Livre (Clique para editar)");
+            laudaPanel.lblUsuario.setForeground(new java.awt.Color(0, 150, 0));
+
+        }
+    }
+
+    private String gerarPathLauda(int modelRow) {
+        String safeCsvName = csv_server
+                .replace(".csv", "")
+                .replaceAll("[\\\\/:*?\"<>|]", "_"); // Remove caracteres ilegais
+
+        // Estrutura: laudas/NOME_DO_ARQUIVO/LINHA.txt
+        return "laudas/" + safeCsvName + "/" + modelRow + ".txt";
+    }
+
+    private void atualizarLaudaAbertaSeNecessario(int rowAlterada) {
+        // 1. Se não tem lauda aberta, ou se a linha aberta não é a que mudou, ignora
+        if (laudaPanel == null || !laudaPanel.isShowing() || currentLaudaRow != rowAlterada) {
+            return;
+        }
+
+        // 2. Feedback visual para o usuário não se assustar
+        laudaPanel.lblUsuario.setText("Sincronizando...");
+        laudaPanel.lblUsuario.setForeground(Color.BLUE);
+
+        new Thread(() -> {
+            try {
+                // 3. Calcula o caminho do arquivo .txt
+                String pathTxt = calcularCaminhoLauda(csv_server, rowAlterada);
+
+                // 4. Baixa o novo conteúdo usando SEU método existente
+                String novoConteudo = api.fetchLaudaContent(pathTxt);
+
+                // 5. Atualiza a tela na Thread da UI
+                SwingUtilities.invokeLater(() -> {
+                    // Desliga listener de edição temporariamente se tiver
+                    laudaPanel.txtTexto.setText(novoConteudo);
+
+                    // Reseta status
+                    laudaPanel.lblUsuario.setText("Atualizado externamente");
+                    laudaPanel.lblUsuario.setForeground(new Color(0, 150, 0)); // Verde
+
+                    // Move cursor para o início
+                    laudaPanel.txtTexto.setCaretPosition(0);
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    // Converte "/BDBR/Final.csv" e linha 3 -> "laudas/_BDBR_Final/3.txt"
+    private String calcularCaminhoLauda(String csvPath, int row) {
+        // 1. Remove extensão e normaliza barras
+        String nomeLimpo = csvPath.replace(".csv", "").replaceAll("[\\\\/]", "_");
+
+        // 2. Garante que começa com _
+        if (!nomeLimpo.startsWith("_")) {
+            nomeLimpo = "_" + nomeLimpo;
+        }
+
+        // 3. Monta o caminho relativo
+        return "laudas/" + nomeLimpo + "/" + row + ".txt";
+    }
+
+    // Este método é chamado APENAS pelo CTRL+S agora
+    private void salvarLaudaAtual(Runnable acaoAposSalvar) {
+        if (currentLaudaPath == null || !laudaVisivel) {
+            return;
+        }
+
+        final String conteudo = laudaPanel.txtTexto.getText();
+        final String path = currentLaudaPath;
+
+        new Thread(() -> {
+            try {
+                // 1. Tenta pegar Lock se não tiver
+                if (!isLaudaLockedByMe) {
+                    var res = api.tryLockFile(path);
+                    if (!res.granted) {
+                        SwingUtilities.invokeLater(()
+                                -> JOptionPane.showMessageDialog(this, "Bloqueado por " + res.owner));
+                        return;
+                    }
+                    isLaudaLockedByMe = true;
+                }
+
+                // 2. Salva
+                api.saveLaudaContent(path, conteudo);
+
+                // 3. Notifica atualização (para os outros verem o texto novo)
+                api.notifyFileUpdate(path);
+
+                // 4. Feedback Visual
+                SwingUtilities.invokeLater(() -> {
+                    laudaPanel.lblUsuario.setText("Salvo!");
+                    new javax.swing.Timer(1000, e -> {
+                        if (isLaudaLockedByMe && laudaVisivel) {
+                            laudaPanel.lblUsuario.setText("Editando: " + usuarioLogado);
+                        }
+                    }).start();
+                });
+
+                // Se houver callback (ex: futuro "Salvar e Sair"), executa
+                if (acaoAposSalvar != null) {
+                    acaoAposSalvar.run();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    public void updatePopupSelecao(JTable table) {
+        // 1. BLINDAGEM: Se a tabela não estiver visível na tela, não faz nada.
+        // Isso evita o erro fatal: java.awt.IllegalComponentStateException
+        if (!table.isShowing()) {
+            return;
+        }
+
+        int[] rows = table.getSelectedRows();
+        int[] columns = table.getSelectedColumns();
+
+        // Só mostra se tiver mais de 1 linha e pelo menos 1 coluna selecionada
+        if (rows.length <= 1 || columns.length == 0) {
+            close_pop_up();
+            return;
+        }
+
+        String tempo = calculo_linhas_selecionadas(table);
+
+        // 2. MELHORIA VISUAL
+        JLabel label = new JLabel(tempo); // Não precisa de HTML se for texto simples
+        label.setOpaque(true);
+        label.setBackground(new Color(255, 255, 225)); // Um amarelo mais suave
+        label.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        label.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.GRAY),
+                BorderFactory.createEmptyBorder(2, 5, 2, 5) // Padding: Top, Left, Bottom, Right
+        ));
+
+        try {
+            // Calcula a posição na borda da última célula selecionada
+            int ultimaLinha = rows[rows.length - 1];
+            int ultimaColuna = columns[columns.length - 1];
+
+            Rectangle cellRect = table.getCellRect(ultimaLinha, ultimaColuna, true);
+            Point tablePos = table.getLocationOnScreen();
+
+            // Posição: Canto inferior direito da célula + um pequeno afastamento (offset)
+            int x = tablePos.x + cellRect.x + cellRect.width + 5;
+            int y = tablePos.y + cellRect.y + cellRect.height + 5;
+
+            // Fecha popup anterior antes de mostrar novo
+            close_pop_up();
+
+            PopupFactory factory = PopupFactory.getSharedInstance();
+            popupAtual = factory.getPopup(table, label, x, y);
+            popupAtual.show();
+
+        } catch (Exception e) {
+            close_pop_up();
+        }
+    }
+
+    public String calculo_linhas_selecionadas(JTable table) {
+        int[] rows = table.getSelectedRows();
+        if (rows.length == 0) {
+            return "00:00:00";
+        }
+        String tempo_int = Funcoes.format_ms_to_hms((String) table.getValueAt(rows[0], 10));
+        for (int i = 1; i < rows.length; i++) {
+            String tempo_next = Funcoes.format_ms_to_hms((String) table.getValueAt(rows[i], 10));
+            tempo_int = Funcoes.soma_tempo(tempo_int, tempo_next);
+        }
+        return tempo_int;
+    }
+
+    public void close_pop_up() {
+        // Esconde popup anterior
+        if (popupAtual != null) {
+            popupAtual.hide();
+            popupAtual = null;
+        }
     }
 
     public Principal getPrincipal() {

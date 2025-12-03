@@ -8,6 +8,7 @@ import com.app.mirrorpage.app.listener.Cliente_listener;
 import com.app.mirrorpage.app.model.Image_panel;
 import com.app.mirrorpage.app.model.Tabela;
 import com.app.mirrorpage.app.tema.TemaSyncClient;
+import com.app.mirrorpage.app.tema.ThemeApplier;
 import com.app.mirrorpage.client.net.ApiClient;
 import com.app.mirrorpage.client.net.AppSocketClient;
 import com.app.mirrorpage.client.ui.tree.FsTree;
@@ -20,7 +21,6 @@ import java.net.URI;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.Collections;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -30,12 +30,17 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class Principal extends javax.swing.JFrame implements Cliente_listener {
 
     public jInternal_tabela tabela;
+
+    private Timer timer;
+    private int totalSegundos = 0;
+    public boolean isRodando = false; // Controla o estado (Play vs Pause)
 
     private final Session session;
     private FsTree fsTree;
@@ -52,6 +57,7 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
     Debug d = new Debug(this);
 
     /**
+     * _
      * Creates new form Principal
      *
      * @param session
@@ -130,7 +136,7 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
             appSocket = new AppSocketClient(uri, evento -> {
                 // Quando receber evento do servidor, aplica na árvore
                 SwingUtilities.invokeLater(() -> {
-                    fsTree.applyEvents(Collections.singletonList(evento));
+                    fsTree.applyEvent(evento);
                 });
             });
 
@@ -232,9 +238,12 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
 
     }
 
-    public static void clear_desktop() {
+    public void clear_desktop() {
         pn_desktop.setVisible(false);
         pn_desktop.setBorder(new EmptyBorder(0, 0, 0, 0));
+        if (tabela != null) {
+            tabela.close_pop_up();
+        }
     }
 
     void open_desktop(String arquivo) {
@@ -547,6 +556,64 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         }
     }
 
+    private void alternarCronometro() {
+        // 1. Inicializa o Timer se ele ainda não existir
+        if (timer == null) {
+            timer = new javax.swing.Timer(1000, e -> {
+                totalSegundos++;
+
+                // Formata HH:mm:ss
+                int h = totalSegundos / 3600;
+                int m = (totalSegundos % 3600) / 60;
+                int s = totalSegundos % 60;
+                lbl_cronometro.setText(String.format("%02d:%02d:%02d", h, m, s));
+            });
+        }
+
+        // 2. Lógica de Alternância
+        if (isRodando) {
+            // --- PAUSAR ---
+            timer.stop();
+            isRodando = false;
+
+            // Ajusta visual
+            lbl_cronometro_start.setText("START"); // Volta a ser Play
+            lbl_cronometro_start.setForeground(new java.awt.Color(0, 150, 0));
+            // btnStart.setIcon(...); // Se usar ícone, troque aqui
+            lbl_cronometro.setForeground(new java.awt.Color(230, 140, 0)); // Laranja (indicando pausa)
+
+        } else {
+            // --- RODAR (PLAY) ---
+            timer.start();
+            isRodando = true;
+
+            // Ajusta visual
+            lbl_cronometro_start.setText("PAUSE"); // Vira Pause
+            lbl_cronometro_start.setForeground(new java.awt.Color(230, 140, 0));
+            // btnStart.setIcon(...); // Se usar ícone, troque aqui
+
+            lbl_cronometro.setForeground(new java.awt.Color(0, 150, 0)); // Verde (rodando)
+        }
+    }
+
+    private void zerarCronometro() {
+        // 1. Para o timer
+        if (timer != null) {
+            timer.stop();
+        }
+
+        // 2. Zera variáveis
+        isRodando = false;
+        totalSegundos = 0;
+
+        // 3. Reseta Visual
+        lbl_cronometro.setText("00:00:00");
+
+        // Reseta o botão Start para ser "Play" novamente
+        lbl_cronometro_start.setText("START");
+        temaSync.aplicarTemaCronometro(lbl_cronometro_start, lbl_cronometro_stop, lbl_cronometro, isRodando);
+    }
+
     // -------------------------------------------------------------------------
     /**
      * This method is called from within the constructor to initialize the form.
@@ -573,8 +640,10 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         pn_inferior = new javax.swing.JPanel();
         pn_baixo = new javax.swing.JPanel();
         horario_atual = new javax.swing.JLabel();
-        lbl_status_jornal = new javax.swing.JLabel();
         out_status_jornal = new javax.swing.JLabel();
+        lbl_cronometro = new javax.swing.JLabel();
+        lbl_cronometro_start = new javax.swing.JLabel();
+        lbl_cronometro_stop = new javax.swing.JLabel();
         pn_alto = new javax.swing.JPanel();
         lbl_entrada_jornal = new javax.swing.JLabel();
         out_entrada_jornal = new javax.swing.JLabel();
@@ -745,32 +814,77 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         horario_atual.setText("HORÁRIO ATUAL");
         horario_atual.setName("horario_atual"); // NOI18N
 
-        lbl_status_jornal.setFont(new java.awt.Font("Globotipo Corporativa Textos", 1, 12)); // NOI18N
-        lbl_status_jornal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_status_jornal.setText("STATUS");
-        lbl_status_jornal.setName("lbl_status_jornal"); // NOI18N
-
         out_status_jornal.setFont(new java.awt.Font("Globotipo Corporativa Textos", 1, 14)); // NOI18N
         out_status_jornal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         out_status_jornal.setText("STATUS");
         out_status_jornal.setName("out_status_jornal"); // NOI18N
+
+        lbl_cronometro.setFont(new java.awt.Font("Globotipo Corporativa Textos", 1, 14)); // NOI18N
+        lbl_cronometro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_cronometro.setText("00:00:00");
+        lbl_cronometro.setName("lbl_cronometro"); // NOI18N
+
+        lbl_cronometro_start.setFont(new java.awt.Font("Globotipo Corporativa Textos", 1, 14)); // NOI18N
+        lbl_cronometro_start.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_cronometro_start.setText("START");
+        lbl_cronometro_start.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_cronometro_start.setName("lbl_cronometro_start"); // NOI18N
+        lbl_cronometro_start.setOpaque(true);
+        lbl_cronometro_start.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_cronometro_startMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lbl_cronometro_startMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lbl_cronometro_startMouseExited(evt);
+            }
+        });
+
+        lbl_cronometro_stop.setFont(new java.awt.Font("Globotipo Corporativa Textos", 1, 14)); // NOI18N
+        lbl_cronometro_stop.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_cronometro_stop.setText("STOP");
+        lbl_cronometro_stop.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_cronometro_stop.setName("lbl_cronometro_stop"); // NOI18N
+        lbl_cronometro_stop.setOpaque(true);
+        lbl_cronometro_stop.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_cronometro_stopMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lbl_cronometro_stopMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lbl_cronometro_stopMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout pn_baixoLayout = new javax.swing.GroupLayout(pn_baixo);
         pn_baixo.setLayout(pn_baixoLayout);
         pn_baixoLayout.setHorizontalGroup(
             pn_baixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn_baixoLayout.createSequentialGroup()
-                .addComponent(lbl_status_jornal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(out_status_jornal, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_cronometro_start, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(out_status_jornal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_cronometro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(horario_atual, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbl_cronometro_stop, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(horario_atual, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pn_baixoLayout.setVerticalGroup(
             pn_baixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(out_status_jornal, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-            .addComponent(lbl_status_jornal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(horario_atual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbl_cronometro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbl_cronometro_stop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pn_baixoLayout.createSequentialGroup()
+                .addComponent(out_status_jornal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(lbl_cronometro_start, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pn_alto.setName("pn_alto"); // NOI18N
@@ -795,6 +909,7 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         out_tempo_producao.setText("00:00:00");
         out_tempo_producao.setName("out_tempo_producao"); // NOI18N
 
+        out_encerramento.setFont(new java.awt.Font("Globotipo Corporativa Textos", 1, 14)); // NOI18N
         out_encerramento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         out_encerramento.setText("00:00:00");
         out_encerramento.setName("out_encerramento"); // NOI18N
@@ -809,14 +924,15 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         pn_altoLayout.setHorizontalGroup(
             pn_altoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn_altoLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lbl_entrada_jornal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(out_entrada_jornal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbl_producao, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(out_tempo_producao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbl_encerramento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(out_encerramento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -861,11 +977,11 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1165, Short.MAX_VALUE)
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 556, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pn_desktopLayout = new javax.swing.GroupLayout(pn_desktop);
@@ -1143,6 +1259,53 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
         }
     }//GEN-LAST:event_DesktopComponentResized
 
+    private void lbl_cronometro_startMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cronometro_startMouseClicked
+        // TODO add your handling code here:
+        alternarCronometro();
+    }//GEN-LAST:event_lbl_cronometro_startMouseClicked
+
+    private void lbl_cronometro_stopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cronometro_stopMouseClicked
+        // TODO add your handling code here:
+        zerarCronometro();
+    }//GEN-LAST:event_lbl_cronometro_stopMouseClicked
+
+    private void lbl_cronometro_startMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cronometro_startMouseEntered
+
+        String texto = lbl_cronometro_start.getText();
+
+        // 1. Define a cor do TEXTO (Baseado se é START ou PAUSE)
+        if (texto.equals("START")) {
+            lbl_cronometro_start.setForeground(new Color(0, 190, 0)); // Verde Claro
+        } else if (texto.equals("PAUSE")) {
+            lbl_cronometro_start.setForeground(new Color(255, 170, 30)); // Laranja Claro
+        }
+
+    }//GEN-LAST:event_lbl_cronometro_startMouseEntered
+
+    private void lbl_cronometro_startMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cronometro_startMouseExited
+
+        String texto = lbl_cronometro_start.getText();
+
+        // 1. Restaura a cor do TEXTO (Cores originais mais escuras)
+        if (texto.equals("START")) {
+            lbl_cronometro_start.setForeground(ThemeApplier.COLOR_CRONOMETRO_START);
+        } else if (texto.equals("PAUSE")) {
+            lbl_cronometro_start.setForeground(ThemeApplier.COLOR_CRONOMETRO_PAUSE);
+        }
+
+    }//GEN-LAST:event_lbl_cronometro_startMouseExited
+
+    private void lbl_cronometro_stopMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cronometro_stopMouseEntered
+        // TODO add your handling code here:
+        lbl_cronometro_stop.setForeground(new Color(220, 120, 120));
+    }//GEN-LAST:event_lbl_cronometro_stopMouseEntered
+
+    private void lbl_cronometro_stopMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cronometro_stopMouseExited
+        // TODO add your handling code here:
+// Volta a cor original do texto
+        lbl_cronometro_stop.setForeground(ThemeApplier.COLOR_CRONOMETRO_STOP);
+    }//GEN-LAST:event_lbl_cronometro_stopMouseExited
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Desktop;
     private javax.swing.JLabel control_pn_lateral;
@@ -1157,13 +1320,15 @@ public class Principal extends javax.swing.JFrame implements Cliente_listener {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
     public javax.swing.JLabel lbl_arquivo_aberto;
+    public javax.swing.JLabel lbl_cronometro;
+    public javax.swing.JLabel lbl_cronometro_start;
+    public javax.swing.JLabel lbl_cronometro_stop;
     private javax.swing.JLabel lbl_encerramento;
     private javax.swing.JLabel lbl_entrada_jornal;
     private javax.swing.JLabel lbl_fechar_arquivo;
     private javax.swing.JLabel lbl_marca;
     private javax.swing.JLabel lbl_producao;
     private javax.swing.JLabel lbl_show_user;
-    private javax.swing.JLabel lbl_status_jornal;
     private javax.swing.JMenu mn_config;
     private javax.swing.JLabel out_encerramento;
     private javax.swing.JLabel out_entrada_jornal;

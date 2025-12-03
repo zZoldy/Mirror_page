@@ -22,7 +22,7 @@ public class RestaurarProduto extends javax.swing.JPanel {
 
         lbl_info_produto.setVisible(false);
         txt_produto.setVisible(false);
-        
+
         carregarCombo();
     }
 
@@ -141,6 +141,9 @@ public class RestaurarProduto extends javax.swing.JPanel {
                     box_produto.removeAllItems();
                     if (pastas != null) {
                         for (String pasta : pastas) {
+                            if (pasta.equals("laudas")) {
+                                continue;
+                            }
                             box_produto.addItem(pasta);
                         }
                     }
@@ -155,7 +158,7 @@ public class RestaurarProduto extends javax.swing.JPanel {
             }
         }).start();
     }
-    
+
     private void btn_applyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_applyActionPerformed
         String selecionado = (String) box_produto.getSelectedItem();
         if (selecionado == null || selecionado.isBlank() || selecionado.equals("Selecione")) {
@@ -220,25 +223,20 @@ public class RestaurarProduto extends javax.swing.JPanel {
     private void processarProduto(String produto) throws Exception {
         System.out.println("Processando: " + produto);
 
+        // 2. Operações de Rede (Salvar/Restaurar)
+        CsvModelService service = new CsvModelService(api);
+        String baseDir = "/Produtos/" + produto;
+
         // 1. Fechar tabela se estiver aberta (Executar na Thread da UI)
         SwingUtilities.invokeLater(() -> {
             if (principal.tabela != null) {
                 String aberto = principal.lbl_arquivo_aberto.getText();
                 // Verifica se o texto começa com o produto (ex: "DF2 - Prelim")
                 if (aberto != null && aberto.startsWith(produto + " -")) {
-                    try {
-                        principal.tabela.dispose();
-                        principal.clear_desktop();
-                    } finally {
-                        principal.tabela = null;
-                    }
+                    principal.tabela.sync.aplicarCsvNoModelo(baseDir);
                 }
             }
         });
-
-        // 2. Operações de Rede (Salvar/Restaurar)
-        CsvModelService service = new CsvModelService(api);
-        String baseDir = "/Produtos/" + produto;
 
         // Padrão
         service.salvar(CsvModelType.PRELIMINAR, baseDir, produto, "Prelim");

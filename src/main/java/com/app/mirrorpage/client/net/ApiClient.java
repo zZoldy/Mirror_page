@@ -1,8 +1,8 @@
 package com.app.mirrorpage.client.net;
 
-import com.app.mirrorpage.client.dto.ChangeBatchDto;
 import com.app.mirrorpage.client.dto.TreeNodeDto;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -14,6 +14,7 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -480,6 +481,78 @@ public class ApiClient {
         ensure2xx(resp, url);
     }
 
+    public LockResult tryLockFile(String path) throws IOException, InterruptedException {
+        String url = baseUrl + "/api/lock/file/lock";
+        // Envia JSON simples: { "path": "laudas/..." }
+        String jsonBody = mapper.writeValueAsString(Map.of("path", path));
+
+        HttpRequest.Builder b = HttpRequest.newBuilder(URI.create(url))
+                .timeout(REQUEST_TIMEOUT)
+                .header("Content-Type", "application/json")
+                .header("Accept", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody, StandardCharsets.UTF_8));
+        addAuth(b);
+
+        var resp = sendWithAutoRefresh(b, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
+
+        if (resp.statusCode() == 200) {
+            return new LockResult(true, null); // Sucesso
+        } else if (resp.statusCode() == 409) {
+            // Pega quem é o dono no corpo da resposta
+            try {
+                JsonNode node = mapper.readTree(resp.body());
+                String owner = node.has("owner") ? node.get("owner").asText() : "desconhecido";
+                return new LockResult(false, owner);
+            } catch (Exception e) {
+                return new LockResult(false, "outro usuário");
+            }
+        }
+
+        throw new ApiHttpException(resp.statusCode(), "Erro ao travar arquivo: " + resp.body());
+    }
+
+    public void unlockFile(String path) {
+        if (path == null) {
+            return;
+        }
+        try {
+            String url = baseUrl + "/api/lock/file/unlock";
+            String jsonBody = mapper.writeValueAsString(Map.of("path", path));
+
+            HttpRequest.Builder b = HttpRequest.newBuilder(URI.create(url))
+                    .timeout(Duration.ofSeconds(5)) // Timeout curto para unlock, não queremos travar a UI ao sair
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(jsonBody, StandardCharsets.UTF_8));
+            addAuth(b);
+
+            // Não bloqueamos esperando resposta (fire and forget seguro)
+            sendWithAutoRefresh(b, HttpResponse.BodyHandlers.discarding());
+        } catch (Exception e) {
+            System.err.println("[Unlock] Falha silenciosa ao destravar: " + e.getMessage());
+        }
+    }
+
+    public void notifyFileUpdate(String path) {
+        if (path == null) {
+            return;
+        }
+        try {
+            String url = baseUrl + "/api/lock/file/notify-update";
+            String jsonBody = mapper.writeValueAsString(Map.of("path", path));
+
+            HttpRequest.Builder b = HttpRequest.newBuilder(URI.create(url))
+                    .timeout(Duration.ofSeconds(5))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(jsonBody, StandardCharsets.UTF_8));
+            addAuth(b);
+
+            // Fire and forget
+            sendWithAutoRefresh(b, HttpResponse.BodyHandlers.discarding());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public String getWebSocketUrl() {
         if (baseUrl.startsWith("https://")) {
             return "wss://" + baseUrl.substring(8) + "/ws";
@@ -592,6 +665,90 @@ public class ApiClient {
 
         HttpResponse<String> resp
                 = sendWithAutoRefresh(b, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
+
+        ensure2xx(resp, url);
+    }
+
+    public void copyRowToFinal(String sourcePath, int sourceRow, String targetPath) throws IOException, InterruptedException {
+        String url = baseUrl + "/api/sheet/copy-to-final";
+
+        // 1. Cria o JSON do corpo
+        // (Assumindo que você tem o Jackson 'mapper' configurado na classe, igual aos outros métodos)
+        Map<String, Object> bodyMap = new HashMap<>();
+        bodyMap.put("sourcePath", sourcePath);
+        bodyMap.put("sourceRow", sourceRow);
+        bodyMap.put("targetPath", targetPath);
+        String jsonBody = mapper.writeValueAsString(bodyMap);
+
+        // 2. Monta o Request
+        HttpRequest.Builder b = HttpRequest.newBuilder(URI.create(url))
+                .timeout(REQUEST_TIMEOUT)
+                .header("Content-Type", "application/json") // Avisa que estamos enviando JSON
+                .header("Accept", "text/plain, application/json")
+                .header("User-Agent", "MirrorPage-Client/1.0")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody, StandardCharsets.UTF_8));
+
+        addAuth(b); // Adiciona o token Bearer
+
+        // 3. Envia com Refresh Automático
+        HttpResponse<String> resp = sendWithAutoRefresh(b, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
+
+        // 4. Tratamento Especial para LOCK (409 Conflict)
+        // Se o servidor devolver 409, o corpo da resposta contém a mensagem: "Linha bloqueada por..."
+        if (resp.statusCode() == 409) {
+            // Lançamos uma exceção com a mensagem exata do servidor para a UI exibir
+            throw new IOException(resp.body());
+        }
+
+        // 5. Garante sucesso para outros códigos (200 OK)
+        ensure2xx(resp, url);
+    }
+
+    public String fetchLaudaContent(String path) throws IOException, InterruptedException {
+        String p = (path == null) ? "" : path;
+        // Codifica o caminho para URL
+        String qs = URLEncoder.encode(p, StandardCharsets.UTF_8);
+        String url = baseUrl + "/api/file/read?path=" + qs;
+
+        HttpRequest.Builder b = HttpRequest.newBuilder(URI.create(url))
+                .timeout(REQUEST_TIMEOUT)
+                .header("Accept", "text/plain; charset=utf-8") // Espera texto puro
+                .header("User-Agent", "MirrorPage-Client/1.0")
+                .GET();
+
+        addAuth(b); // Adiciona o token Bearer corretamente
+
+        // Usa seu método interno que já trata o refresh de token
+        HttpResponse<String> resp = sendWithAutoRefresh(b, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
+
+        // Tratamento específico para Lauda: 404 significa que ainda não foi escrita
+        if (resp.statusCode() == 404) {
+            return "";
+        }
+
+        ensure2xx(resp, url); // Lança erro se não for 200 ou 404 tratado acima
+        return resp.body();
+    }
+
+    
+    public void saveLaudaContent(String path, String content) throws IOException, InterruptedException {
+        String url = baseUrl + "/api/tree/file";
+
+        // Usa o seu 'mapper' (Jackson) já existente para criar o JSON seguro
+        String jsonBody = mapper.writeValueAsString(Map.of(
+                "path", path == null ? "" : path,
+                "content", content == null ? "" : content
+        ));
+
+        HttpRequest.Builder b = HttpRequest.newBuilder(URI.create(url))
+                .timeout(REQUEST_TIMEOUT)
+                .header("Content-Type", "application/json; charset=utf-8")
+                .header("Accept", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody, StandardCharsets.UTF_8));
+
+        addAuth(b); // Adiciona o token Bearer
+
+        HttpResponse<String> resp = sendWithAutoRefresh(b, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
 
         ensure2xx(resp, url);
     }
